@@ -1,0 +1,1566 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chez Pierrot - Snacking Revisité, Pizzeria & Traiteur</title>
+    
+    <!-- Tailwind CSS pour le style -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    
+    <!-- Google Fonts - Police élégante -->
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome pour les icônes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* =============================================
+           VARIABLES DE COULEURS - Modifier ici pour changer le thème
+           ============================================= */
+        :root {
+            --rose-bonbon: #FF69B4;      /* Rose principal */
+            --rose-fushia: #FF1493;       /* Rose foncé/accent */
+            --rose-clair: #FFB6C1;        /* Rose clair pour les fonds */
+            --rose-pale: #FFF0F5;         /* Rose très pâle pour les sections */
+            --blanc: #FFFFFF;
+            --noir: #333333;
+        }
+
+        /* =============================================
+           STYLES DE BASE
+           ============================================= */
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .font-pacifico {
+            font-family: 'Pacifico', cursive;
+        }
+
+        /* =============================================
+           COULEURS PERSONNALISÉES TAILWIND
+           ============================================= */
+        .bg-rose-bonbon { background-color: var(--rose-bonbon); }
+        .bg-rose-fushia { background-color: var(--rose-fushia); }
+        .bg-rose-clair { background-color: var(--rose-clair); }
+        .bg-rose-pale { background-color: var(--rose-pale); }
+        
+        .text-rose-bonbon { color: var(--rose-bonbon); }
+        .text-rose-fushia { color: var(--rose-fushia); }
+        
+        .border-rose-bonbon { border-color: var(--rose-bonbon); }
+        .border-rose-fushia { border-color: var(--rose-fushia); }
+
+        /* =============================================
+           EFFETS ET ANIMATIONS
+           ============================================= */
+        .hover-scale {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .hover-scale:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(255, 20, 147, 0.3);
+        }
+
+        /* Gradient rose pour les boutons */
+        .gradient-rose {
+            background: linear-gradient(135deg, var(--rose-bonbon), var(--rose-fushia));
+        }
+
+        /* Animation du header au scroll */
+        .header-scrolled {
+            background: rgba(255, 255, 255, 0.95) !important;
+            box-shadow: 0 2px 20px rgba(255, 20, 147, 0.2);
+        }
+
+        /* Style pour les cartes du menu */
+        .menu-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        .menu-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(255, 20, 147, 0.2);
+        }
+
+        /* Hero section avec overlay */
+        .hero-overlay {
+            background: linear-gradient(135deg, rgba(255, 105, 180, 0.9), rgba(255, 20, 147, 0.8));
+        }
+
+        /* Section séparateur décoratif */
+        .wave-separator {
+            position: relative;
+        }
+        .wave-separator::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            right: 0;
+            height: 50px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 100'%3E%3Cpath fill='%23FFF0F5' d='M0,50 C360,100 1080,0 1440,50 L1440,100 L0,100 Z'/%3E%3C/svg%3E");
+            background-size: cover;
+        }
+
+        /* Style mobile menu */
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+
+        /* Animation fade-in pour les éléments */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* =============================================
+           FONTS PROFESSIONNELLES
+           ============================================= */
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .section-subtitle {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+        }
+
+        /* =============================================
+           STYLES POUR LE HEADER ET HERO
+           ============================================= */
+        /* Logo header avec contour noir */
+        .logo-header {
+            color: white;
+            text-shadow: 
+                -2px -2px 0 #000,
+                2px -2px 0 #000,
+                -2px 2px 0 #000,
+                2px 2px 0 #000,
+                -2px 0 0 #000,
+                2px 0 0 #000,
+                0 -2px 0 #000,
+                0 2px 0 #000;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        /* Titre hero avec contour noir */
+        .hero-title {
+            color: white;
+            text-shadow: 
+                -3px -3px 0 #000,
+                3px -3px 0 #000,
+                -3px 3px 0 #000,
+                3px 3px 0 #000,
+                -3px 0 0 #000,
+                3px 0 0 #000,
+                0 -3px 0 #000,
+                0 3px 0 #000,
+                -1px -1px 0 #000,
+                1px -1px 0 #000,
+                -1px 1px 0 #000,
+                1px 1px 0 #000;
+            font-weight: bold;
+        }
+
+        /* =============================================
+           LOGO SECTION ACCUEIL (modifié pour être parfaitement rond)
+           ============================================= */
+        .hero-logo {
+            width: 140px;
+            height: 140px;
+            margin: 0 auto 30px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 40px rgba(255, 20, 147, 0.4);
+            animation: bounce 2s infinite;
+            padding: 8px;        /* garder un léger anneau blanc ; mettre 0 si vous ne le voulez pas */
+            overflow: hidden;    /* IMPORTANT : coupe les coins carrés */
+        }
+
+        .hero-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;   /* remplit le cercle sans bandes blanches et sans coins carrés */
+            border-radius: 50%;  /* assure que l'image est circulaire */
+            display: block;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        /* =============================================
+           LIGHTBOX / ZOOM SUR LES IMAGES
+           ============================================= */
+        .lightbox-trigger {
+            cursor: zoom-in;
+        }
+
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90vw;
+            max-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox-img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: 10px;
+            box-shadow: 0 10px 60px rgba(255, 105, 180, 0.4);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            font-size: 2rem;
+            color: white;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            z-index: 1001;
+            background: rgba(255, 20, 147, 0.5);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox-close:hover {
+            color: var(--rose-bonbon);
+            background: rgba(255, 20, 147, 0.8);
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 20, 147, 0.5);
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox-nav:hover {
+            background: rgba(255, 20, 147, 0.9);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .lightbox-prev {
+            left: 20px;
+        }
+
+        .lightbox-next {
+            right: 20px;
+        }
+
+        .lightbox-counter {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            background: rgba(255, 20, 147, 0.5);
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .lightbox-close {
+                top: 15px;
+                right: 15px;
+                width: 40px;
+                height: 40px;
+                font-size: 1.5rem;
+            }
+
+            .lightbox-nav {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+
+            .lightbox-prev {
+                left: 10px;
+            }
+
+            .lightbox-next {
+                right: 10px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-white">
+
+    <!-- =============================================
+         HEADER / NAVIGATION
+         - Navigation fixe en haut
+         - Logo + liens de navigation
+         - Menu hamburger pour mobile
+         ============================================= -->
+    <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent">
+        <nav class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                
+                <!-- Logo - Avec contour noir et texte blanc -->
+                <a href="#accueil" class="logo-header font-pacifico text-2xl md:text-3xl">
+                    Chez Pierrot
+                </a>
+
+                <!-- Navigation Desktop -->
+                <ul class="hidden md:flex space-x-8 text-gray-700 font-medium">
+                    <li><a href="#accueil" class="hover:text-rose-fushia transition">Accueil</a></li>
+                    <li><a href="#presentation" class="hover:text-rose-fushia transition">Présentation</a></li>
+                    <li><a href="#menu" class="hover:text-rose-fushia transition">Menu</a></li>
+                    <li><a href="#galerie" class="hover:text-rose-fushia transition">Galerie</a></li>
+                    <li><a href="#contact" class="hover:text-rose-fushia transition">Contact</a></li>
+                </ul>
+
+                <!-- Bouton Menu Mobile -->
+                <button id="menuBtn" class="md:hidden text-rose-fushia text-2xl">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Menu Mobile -->
+        <div id="mobileMenu" class="mobile-menu fixed top-0 right-0 h-full w-64 bg-white shadow-2xl z-50 p-6">
+            <button id="closeMenu" class="absolute top-4 right-4 text-2xl text-rose-fushia">
+                <i class="fas fa-times"></i>
+            </button>
+            <ul class="mt-16 space-y-6 text-gray-700 font-medium">
+                <li><a href="#accueil" class="block hover:text-rose-fushia transition">Accueil</a></li>
+                <li><a href="#presentation" class="block hover:text-rose-fushia transition">Présentation</a></li>
+                <li><a href="#menu" class="block hover:text-rose-fushia transition">Menu</a></li>
+                <li><a href="#galerie" class="block hover:text-rose-fushia transition">Galerie</a></li>
+                <li><a href="#contact" class="block hover:text-rose-fushia transition">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- =============================================
+         SECTION HERO / ACCUEIL
+         - Grande bannière d'accueil
+         - Slogan et bouton d'action
+         ============================================= -->
+    <section id="accueil" class="relative min-h-screen flex items-center justify-center wave-separator">
+        <!-- Image de fond - Utilisation de votre première photo -->
+        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('images/a.jpg');"></div>
+        
+        <!-- Overlay rose -->
+        <div class="absolute inset-0 hero-overlay"></div>
+        
+        <!-- Contenu -->
+        <div class="relative z-10 text-center text-white px-4">
+            <!-- Logo animé avec votre image -->
+            <div class="hero-logo">
+                <img src="images/logo.png" alt="Logo Chez Pierrot">
+            </div>
+
+            <h1 class="hero-title font-pacifico text-5xl md:text-7xl mb-4">
+                Chez Pierrot
+            </h1>
+            <p class="text-xl md:text-2xl mb-2 font-light">
+                Snacking Revisité • Pizzeria • Food Truck • Traiteur
+            </p>
+            <p class="text-lg mb-8 opacity-90">
+                📍 8 Place de l'Horloge, Clarensac, France, 30870
+            </p>
+            
+            <!-- Boutons d'action -->
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#menu" class="bg-white text-rose-fushia px-8 py-3 rounded-full font-semibold hover:bg-rose-pale transition hover-scale">
+                    <i class="fas fa-utensils mr-2"></i>Voir le Menu
+                </a>
+                <a href="tel:0981522946" class="border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-rose-fushia transition hover-scale">
+                    <i class="fas fa-phone mr-2"></i>Commander
+                </a>
+            </div>
+        </div>
+
+        <!-- Flèche vers le bas -->
+        <a href="#presentation" class="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-white text-3xl animate-bounce">
+            <i class="fas fa-chevron-down"></i>
+        </a>
+    </section>
+
+    <!-- =============================================
+         SECTION PRÉSENTATION
+         - Description de l'établissement
+         - Points forts / Services
+         ============================================= -->
+    <section id="presentation" class="py-20 bg-rose-pale">
+        <div class="container mx-auto px-4">
+            
+            <!-- Titre de section -->
+            <div class="text-center mb-16 fade-in">
+                <p class="section-subtitle text-rose-fushia mb-3">Découvrez l'établissement</p>
+                <h2 class="section-title text-5xl md:text-6xl text-gray-900 mb-4">
+                    Bienvenue Chez La Famille !
+                </h2>
+                <div class="w-24 h-1 bg-rose-bonbon mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                
+                <!-- Texte de présentation -->
+                <div class="fade-in">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">
+                        Le snacking revisité avec passion ✨
+                    </h3>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        Bienvenue chez <strong class="text-rose-fushia">Chez Pierrot</strong> ! 
+                        Nous vous proposons une cuisine gourmande et généreuse, préparée avec des produits frais 
+                        et de qualité. Burgers savoureux, pizzas artisanales, et bien plus encore...
+                    </p>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        Que ce soit pour une pause déjeuner, un événement spécial ou simplement pour 
+                        vous faire plaisir, notre équipe est là pour régaler vos papilles !
+                    </p>
+                    
+                    <!-- Services proposés -->
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="flex items-center">
+                            <i class="fas fa-truck text-rose-fushia text-xl mr-3"></i>
+                            <span class="text-gray-700">Food Truck</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-pizza-slice text-rose-fushia text-xl mr-3"></i>
+                            <span class="text-gray-700">Pizzeria</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-hamburger text-rose-fushia text-xl mr-3"></i>
+                            <span class="text-gray-700">Burgers</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-concierge-bell text-rose-fushia text-xl mr-3"></i>
+                            <span class="text-gray-700">Traiteur</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Images de présentation - Vos 4 photos en grille -->
+                <div class="fade-in">
+                    <div class="grid grid-cols-2 gap-4">
+                        <!-- Photo a.jpg -->
+                        <div class="relative overflow-hidden rounded-2xl aspect-square">
+                            <img src="images/a.jpg" 
+                                 alt="Création 1" 
+                                 class="w-full h-full object-cover hover-scale lightbox-trigger"
+                                 data-lightbox="gallery"
+                                 data-index="0">
+                        </div>
+                        <!-- Photo b.jpg -->
+                        <div class="relative overflow-hidden rounded-2xl aspect-square">
+                            <img src="images/b.jpg" 
+                                 alt="Création 2" 
+                                 class="w-full h-full object-cover hover-scale lightbox-trigger"
+                                 data-lightbox="gallery"
+                                 data-index="1">
+                        </div>
+                        <!-- Photo c.jpg -->
+                        <div class="relative overflow-hidden rounded-2xl aspect-square">
+                            <img src="images/c.jpg" 
+                                 alt="Création 3" 
+                                 class="w-full h-full object-cover hover-scale lightbox-trigger"
+                                 data-lightbox="gallery"
+                                 data-index="2">
+                        </div>
+                        <!-- Photo d.jpg -->
+                        <div class="relative overflow-hidden rounded-2xl aspect-square">
+                            <img src="images/d.jpg" 
+                                 alt="Création 4" 
+                                 class="w-full h-full object-cover hover-scale lightbox-trigger"
+                                 data-lightbox="gallery"
+                                 data-index="3">
+                        </div>
+                    </div>
+                    <!-- Badge décoratif -->
+                    <div class="absolute -bottom-5 -right-5 bg-rose-fushia text-white p-4 rounded-full shadow-lg mt-4">
+                        <i class="fas fa-heart text-2xl"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- =============================================
+         SECTION MENU
+         - Catégories de produits
+         - Ajouter/modifier les items selon votre carte
+         ============================================= -->
+    <section id="menu" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            
+            <!-- Titre de section -->
+            <div class="text-center mb-16 fade-in">
+                <p class="section-subtitle text-rose-fushia mb-3">Découvrez nos saveurs</p>
+                <h2 class="section-title text-5xl md:text-6xl text-gray-900 mb-4">
+                    Notre Menu
+                </h2>
+                <div class="w-24 h-1 bg-rose-bonbon mx-auto rounded-full mt-4"></div>
+            </div>
+
+            <!-- Note Frites et Boisson -->
+            <div class="bg-gray-900 text-white p-6 rounded-2xl mb-16 fade-in text-center">
+                <p class="text-lg md:text-xl font-bold">
+                    Pour toute la carte menu avec frites et boisson
+                    <br>
+                    <span class="text-rose-bonbon text-2xl md:text-3xl">+ 3€</span>
+                </p>
+            </div>
+
+
+            <!-- ===== CATÉGORIE : BURGERS ===== -->
+            <div class="mb-16 fade-in">
+                <h3 class="text-3xl font-semibold text-center text-gray-900 mb-2">
+                    🍔 LES FOLIES BURGERS 🍔
+                </h3>
+                <p class="text-center text-gray-500 mb-8 font-light">Pain burger artisanal, Salade/Tomate (bio)</p>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    
+                    <!-- Burger 1 - Copier ce bloc pour ajouter d'autres burgers -->
+                    <div class="menu-card p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="font-semibold text-gray-800">Le Royale Cheese</h4>
+                            <span class="text-rose-fushia font-bold">9,00€</span>
+                        </div>
+                        <p class="text-gray-500 text-sm">Viande bouchère 150gr, cheddar</p>
+                    </div>
+
+                    <!-- Burger 2 -->
+                    <div class="menu-card p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="font-semibold text-gray-800">Le Chicken</h4>
+                            <span class="text-rose-fushia font-bold">9,00€</span>
+                        </div>
+                        <p class="text-gray-500 text-sm">Poulet à la milanaise, cheddar, oignons frits</p>
+                    </div>
+
+                    <!-- Burger 3 -->
+                    <div class="menu-card p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="font-semibold text-gray-800">Le French</h4>
+                            <span class="text-rose-fushia font-bold">10,00€</span>
+                        </div>
+                        <p class="text-gray-500 text-sm">Viande bouchère 150gr, cheddar, Fromage au choix, oignons caramélisés</p>
+                    </div>
+
+                    <!-- Burger 4 -->
+                    <div class="menu-card p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="font-semibold text-gray-800">Le Chef</h4>
+                            <span class="text-rose-fushia font-bold">11,00€</span>
+                        </div>
+                        <p class="text-gray-500 text-sm">Viande bouchère 150gr, galette de pommes de terre, cheddar</p>
+                    </div>
+
+                    <!-- Burger 5 -->
+                    <div class="menu-card p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="font-semibold text-gray-800">Le Viking Cheddar</h4>
+                            <span class="text-rose-fushia font-bold">9,00€</span>
+                        </div>
+                        <p class="text-gray-500 text-sm">Viande bouchère 150gr, tripe cheddar, oignons frits, sauche blanche et algerienne</p>
+                    </div>
+
+                    <!-- Burger 6 -->
+                    <div class="menu-card p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="font-semibold text-gray-800">Le Maxi</h4>
+                            <span class="text-rose-fushia font-bold">12,00€</span>
+                        </div>
+                        <p class="text-gray-500 text-sm">Double viande bouchère 150gr, double Cheddar</p>
+                    </div>
+
+                    <!-- Burger 7 -->
+                    <div class="menu-card p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="font-semibold text-gray-800">Burger XXL</h4>
+                            <span class="text-rose-fushia font-bold">12,00€</span>
+                        </div>
+                        <p class="text-gray-500 text-sm">Viande bouchère 150gr, poulet milanais, sauce BBQ et Bresilienne</p>
+                    </div>
+
+                    <!-- Burger 8 -->
+                    <div class="menu-card p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="font-semibold text-gray-800">Burger XXL</h4>
+                            <span class="text-rose-fushia font-bold">14,00€</span>
+                        </div>
+                        <p class="text-gray-500 text-sm">Viande bouchère 150gr, galette de pommes de terre, poulet milanais, double cheddar</p>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+            <!-- ===== CATÉGORIE : FRENCH BAGUETTE ===== -->
+            <div class="mb-16 fade-in">
+                <h3 class="text-3xl font-semibold text-center text-gray-900 mb-2">
+                    🥖 LES FRENCH BAGUETTES 🥖
+                </h3>
+                <p class="text-center text-gray-500 mb-8 font-light">Baguette artisinale, salade/tomate (bio)</p>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    
+                    <!-- french baguette 1 -->
+                    <div class="menu-card p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="font-semibold text-gray-800">L'amricain Style</h4>
+                            <span class="text-rose-fushia font-bold">9,00€</span>
+                        </div>
+                        <p class="text-gray-500 text-sm">Viande bouchère 150gr, frites, cheddar</p>
+                    </div>
+
+                    <!-- french baguette 2 -->
+                    <div class="menu-card p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="font-semibold text-gray-800">Le Kolosse</h4>
+                            <span class="text-rose-fushia font-bold">10,00€</span>
+                        </div>
+                        <p class="text-gray-500 text-sm">Viande bouchère 150gr, poulet à la milanaise, frite, cheddar</p>
+                    </div>
+
+                    <!-- french baguette 3 -->
+                    <div class="menu-card p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="font-semibold text-gray-800">Le Milanais</h4>
+                            <span class="text-rose-fushia font-bold">8,00€</span>
+                        </div>
+                        <p class="text-gray-500 text-sm">Poulet à la milanaise, frites, cheddar</p>
+                    </div>
+
+
+                </div>
+            </div>
+
+
+
+            <!-- ===== CATÉGORIE : FRENCH BAGUETTE ===== -->
+            <div class="mb-16 fade-in">
+                <h3 class="text-3xl font-semibold text-center text-gray-900 mb-2">
+                    🥙 LES GALETTES 🥙
+                </h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    
+                    <!-- galettes  1 -->
+                    <div class="menu-card p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="font-semibold text-gray-800">Le fameux kebab Style</h4>
+                            <span class="text-rose-fushia font-bold">8,50€</span>
+                        </div>
+                        <p class="text-gray-500 text-sm">Kebab, frites, salade, tomate</p>
+                    </div>
+
+                    <!-- galettes  2 -->
+                    <div class="menu-card p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="font-semibold text-gray-800">Le crousty bacon</h4>
+                            <span class="text-rose-fushia font-bold">8,50€</span>
+                        </div>
+                        <p class="text-gray-500 text-sm">Tenders, bacon, frites, (avec ou sans salade/tomates), sauce Brésilienne</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== CATÉGORIE : LES TACOS ===== -->
+            <div class="mb-16 fade-in">
+                <h3 class="text-3xl font-semibold text-center text-gray-900 mb-2">
+                    🌮 LES TACOS 🌮
+                </h3>
+                <p class="text-center text-gray-500 mb-8 font-light">Fromagère Maison - Frites</p>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    
+                    <!-- Tacos M -->
+                    <div class="menu-card p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="font-semibold text-gray-800">Tacos M (1 Viande)</h4>
+                            <span class="text-rose-fushia font-bold">8,50€</span>
+                        </div>
+                        <p class="text-gray-500 text-sm">Choix de viande: Tenders, Cordon Bleu, Kebab, Viande Hachée, Émincer de Poulet, Nuggets</p>
+                        <p class="text-gray-500 text-sm mt-2">Choix de sauce: Biggy, Nayo, BBQ, Brésilienne, Algérienne, Samourai, Blanche, Ketchup</p>
+                    </div>
+
+                    <!-- Tacos L -->
+                    <div class="menu-card p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="font-semibold text-gray-800">Tacos L (2 Viandes)</h4>
+                            <span class="text-rose-fushia font-bold">9,50€</span>
+                        </div>
+                        <p class="text-gray-500 text-sm">Choix de viande: Tenders, Cordon Bleu, Kebab, Viande Hachée, Émincer de Poulet, Nuggets</p>
+                        <p class="text-gray-500 text-sm mt-2">Choix de sauce: Biggy, Nayo, BBQ, Brésilienne, Algérienne, Samourai, Blanche, Ketchup</p>
+                    </div>
+
+                    <!-- Tacos XL -->
+                    <div class="menu-card p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="font-semibold text-gray-800">Tacos XL (3 Viandes)</h4>
+                            <span class="text-rose-fushia font-bold">11,00€</span>
+                        </div>
+                        <p class="text-gray-500 text-sm">Choix de viande: Tenders, Cordon Bleu, Kebab, Viande Hachée, Émincer de Poulet, Nuggets</p>
+                        <p class="text-gray-500 text-sm mt-2">Choix de sauce: Biggy, Nayo, BBQ, Brésilienne, Algérienne, Samourai, Blanche, Ketchup</p>
+                    </div>
+
+                    <!-- Tacos Bowl -->
+                    <div class="menu-card p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="font-semibold text-gray-800">Tacos Bowl</h4>
+                            <span class="text-rose-fushia font-bold">9,50€</span>
+                        </div>
+                        <p class="text-gray-500 text-sm">Frites, sauce fromagère, 1 ou 2 viandes au choix, sauce du choix</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== CATÉGORIE : LES EXCLUSIVITÉS ===== -->
+            <div class="mb-16 fade-in">
+                <h3 class="text-3xl font-semibold text-center text-gray-900 mb-2">
+                    ⭐ LES EXCLUSIVITÉS ⭐
+                </h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    
+                    <!-- Le Tasty Crousty -->
+                    <div class="menu-card p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="font-semibold text-gray-800">Le Tasty Crousty</h4>
+                            <span class="text-rose-fushia font-bold">9,50€</span>
+                        </div>
+                        <p class="text-gray-500 text-sm">Base riz, sauce fromagère, Maison, tenders, Sauce Façon Chez Pierrot, Oignons Frits</p>
+                    </div>
+
+
+                    <!-- Le Coulant -->
+                    <div class="menu-card p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="font-semibold text-gray-800">Le Coulant</h4>
+                            <span class="text-rose-fushia font-bold">12,00€</span>
+                        </div>
+                        <p class="text-gray-500 text-sm">Viande bouchère 150gr, galette de pomme de terre, sauce fromagère, cheddar</p>
+                    </div>
+
+                    <!-- Le Gastro -->
+                    <div class="menu-card p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="font-semibold text-gray-800">Le Gastro</h4>
+                            <span class="text-rose-fushia font-bold">14,00€</span>
+                        </div>
+                        <p class="text-gray-500 text-sm">Pain brioché, Viande bouchère 150gr, bacon, crème déglaçée au miel et vinaigre balsamique, cheddar</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== CATÉGORIE : LES GALETTES (Nouvelle) ===== -->
+            <div class="mb-16 fade-in">
+                <h3 class="text-3xl font-semibold text-center text-gray-900 mb-2">
+                    🥙 LES GALETTES SPÉCIALES 🥙
+                </h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    
+                    <!-- Le Colossal Tacos -->
+                    <div class="menu-card p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="font-semibold text-gray-800">Le Colossal Tacos</h4>
+                            <span class="text-rose-fushia font-bold">16,00€</span>
+                        </div>
+                        <p class="text-gray-500 text-sm font-bold mb-2">1 KG MINIMUM</p>
+                        <p class="text-gray-500 text-sm">5 galettes, 3 ou 4 viandes au choix dans les tacos, sauce fromagère, cheddar, sauce au choix</p>
+                    </div>
+
+                    <!-- La Fajitas Façon Pierrot -->
+                    <div class="menu-card p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="font-semibold text-gray-800">La Fajitas Façon Pierrot</h4>
+                            <span class="text-rose-fushia font-bold">9,50€</span>
+                        </div>
+                        <p class="text-gray-500 text-sm">Viande bouchère, filet de poulet, 3 poivrons, oignons, guacamole, sauce piquante</p>
+                    </div>
+
+                    <!-- La Dinguerie -->
+                    <div class="menu-card p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="font-semibold text-gray-800">La Dinguerie</h4>
+                            <span class="text-rose-fushia font-bold">9,50€</span>
+                        </div>
+                        <p class="text-gray-500 text-sm">Galette, salade tomates, frites, sauce onctueuse, poulet marin, œuf, cheddar, fondu</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== CATÉGORIE : LES SALADES ===== -->
+            <div class="mb-16 fade-in">
+                <h3 class="text-3xl font-semibold text-center text-gray-900 mb-2">
+                    🥗 LES SALADES 🥗
+                </h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    
+                    <!-- La Ceasar -->
+                    <div class="menu-card p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="font-semibold text-gray-800">La Ceasar</h4>
+                            <span class="text-rose-fushia font-bold">10,00€</span>
+                        </div>
+                        <p class="text-gray-500 text-sm">Salade, tomate, œuf, oignons frits, parmesan, croutons, tenders</p>
+                    </div>
+
+                    <!-- La Bleue -->
+                    <div class="menu-card p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="font-semibold text-gray-800">La Bleue</h4>
+                            <span class="text-rose-fushia font-bold">10,00€</span>
+                        </div>
+                        <p class="text-gray-500 text-sm">Salade, tomate, œuf, oignons frits, parmesan, fourme d'Ambert</p>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- ===== CATÉGORIE : PIZZAS ===== -->
+            <div class="mb-16 fade-in">
+                <h3 class="text-3xl font-semibold text-center text-gray-900 mb-2">
+                    🍕 Nos Pizzas 🍕
+                </h3>
+                <p class="text-center text-gray-500 mb-8 font-light">Artisanales et savoureuses</p>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    
+                    <!-- Pizza 1 -->
+                    <div class="menu-card p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="font-semibold text-gray-800">La Margherita</h4>
+                            <span class="text-rose-fushia font-bold">9,00€</span>
+                        </div>
+                        <p class="text-gray-500 text-sm">Tomate, râpé, mozzarella</p>
+                    </div>
+
+                    <!-- Pizza 2 -->
+                    <div class="menu-card p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="font-semibold text-gray-800">La romaine</h4>
+                            <span class="text-rose-fushia font-bold">11,00€</span>
+                        </div>
+                        <p class="text-gray-500 text-sm">Tomate, râpé, jambon</p>
+                    </div>
+
+                    <!-- Pizza 3 -->
+                    <div class="menu-card p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="font-semibold text-gray-800">La royale</h4>
+                            <span class="text-rose-fushia font-bold">12,00€</span>
+                        </div>
+                        <p class="text-gray-500 text-sm">Tomate, râpé, viande bouchère, cheddar</p>
+                    </div>
+
+                    <!-- Pizza 4 -->
+                    <div class="menu-card p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="font-semibold text-gray-800">La burger</h4>
+                            <span class="text-rose-fushia font-bold">13,00€</span>
+                        </div>
+                        <p class="text-gray-500 text-sm">Tomate, râpé, viande bouchère, cheddar</p>
+                    </div>
+
+
+
+                    <!-- Pizza 5 -->
+                    <div class="menu-card p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="font-semibold text-gray-800">La 4 fromages</h4>
+                            <span class="text-rose-fushia font-bold">13,00€</span>
+                        </div>
+                        <p class="text-gray-500 text-sm">Crème, râpé, mozzarella, chèvre producteur, fourme d'ambert</p>
+                    </div>
+
+                    <!-- Pizza 6 -->
+                    <div class="menu-card p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="font-semibold text-gray-800">La chèvre miel</h4>
+                            <span class="text-rose-fushia font-bold">12,00€</span>
+                        </div>
+                        <p class="text-gray-500 text-sm">Crème, râpé, chèvre producteur, miel</p>
+                    </div>
+
+                    <!-- Pizza 7 -->
+                    <div class="menu-card p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="font-semibold text-gray-800">La fermière</h4>
+                            <span class="text-rose-fushia font-bold">13,00€</span>
+                        </div>
+                        <p class="text-gray-500 text-sm">Crème, râpé, chèvre producteur ou brie, poulet</p>
+                    </div>
+
+                    <!-- Pizza 8 -->
+                    <div class="menu-card p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="font-semibold text-gray-800">La kebab </h4>
+                            <span class="text-rose-fushia font-bold">12,00€</span>
+                        </div>
+                        <p class="text-gray-500 text-sm">Crème, râpé, kebab</p>
+                    </div>
+
+                    <!-- Pizza 9 -->
+                    <div class="menu-card p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="font-semibold text-gray-800">La hot mexicaine</h4>
+                            <span class="text-rose-fushia font-bold">14,00€</span>
+                        </div>
+                        <p class="text-gray-500 text-sm">Tomate, rapé, viande bouchère marinée, poivrons, sauce piquante</p>
+                    </div>
+
+                    <!-- Pizza 10 -->
+                    <div class="menu-card p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="font-semibold text-gray-800">La savoyarde</h4>
+                            <span class="text-rose-fushia font-bold">14,00€</span>
+                        </div>
+                        <p class="text-gray-500 text-sm">Crème, rapé, pomme de terre, lardon, oignons, reblochon</p>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <!-- ===== CATÉGORIE : ACCOMPAGNEMENTS ===== -->
+            <div class="fade-in">
+                <h3 class="text-3xl font-semibold text-center text-gray-900 mb-2">
+                    🥤 Le Menu Kids 🥤
+                </h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    
+                    <div class="menu-card p-6 text-center">
+                        <i class="fas fa-french-fries text-rose-bonbon text-3xl mb-3"></i>
+                        <h4 class="font-semibold text-gray-800">4 Nuggets, Frites Maison, caprisun, surpise</h4>
+                        <span class="text-rose-fushia font-bold">6€</span>
+                    </div>
+
+                </div>
+            </div>
+
+            
+            <!-- ===== CATÉGORIE : ACCOMPAGNEMENTS ===== -->
+            <div class="fade-in">
+                <h3 class="text-3xl font-semibold text-center text-gray-900 mb-2">
+                    👦 Accompagnements & Boissons 👧
+                </h3>
+                <p class="text-center text-gray-500 mb-8 font-light">Pour compléter votre repas</p>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    
+                    <div class="menu-card p-6 text-center">
+                        <i class="fas fa-french-fries text-rose-bonbon text-3xl mb-3"></i>
+                        <h4 class="font-semibold text-gray-800">Frites Maison</h4>
+                        <span class="text-rose-fushia font-bold">3,50€</span>
+                    </div>
+
+
+                    <div class="menu-card p-6 text-center">
+                        <i class="fas fa-glass-whiskey text-rose-bonbon text-3xl mb-3"></i>
+                        <h4 class="font-semibold text-gray-800">Soft Drinks</h4>
+                        <span class="text-rose-fushia font-bold">2,50€</span>
+                    </div>
+
+                    <div class="menu-card p-6 text-center">
+                        <i class="fas fa-ice-cream text-rose-bonbon text-3xl mb-3"></i>
+                        <h4 class="font-semibold text-gray-800">Desserts</h4>
+                        <span class="text-rose-fushia font-bold">4,50€</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Note menu -->
+            <p class="text-center text-gray-500 mt-10 text-sm">
+                * Les prix et la carte peuvent varier. N'hésitez pas à nous contacter pour plus d'informations.
+            </p>
+        </div>
+    </section>
+
+    <!-- =============================================
+         SECTION GALERIE
+         - Photos des plats
+         - Remplacer les URLs par vos propres images
+         ============================================= -->
+    <section id="galerie" class="py-20 bg-rose-pale">
+        <div class="container mx-auto px-4">
+            
+            <!-- Titre de section -->
+            <div class="text-center mb-16 fade-in">
+                <p class="section-subtitle text-rose-fushia mb-3">Quelques créations</p>
+                <h2 class="section-title text-5xl md:text-6xl text-gray-900 mb-4">
+                    Notre Galerie
+                </h2>
+                <p class="text-gray-600 font-light">Régalez-vous avec les yeux</p>
+                <div class="w-24 h-1 bg-rose-bonbon mx-auto rounded-full mt-4"></div>
+            </div>
+
+            <!-- Grille de photos - Images Unsplash restaurées -->
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 fade-in">
+                
+                <!-- Photo 1 -->
+                <div class="relative overflow-hidden rounded-2xl aspect-square hover-scale">
+                    <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400" 
+                         alt="Burger gourmet" 
+                         class="w-full h-full object-cover">
+                </div>
+
+                <!-- Photo 2 -->
+                <div class="relative overflow-hidden rounded-2xl aspect-square hover-scale">
+                    <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400" 
+                         alt="Pizza artisanale" 
+                         class="w-full h-full object-cover">
+                </div>
+
+                <!-- Photo 3 -->
+                <div class="relative overflow-hidden rounded-2xl aspect-square hover-scale">
+                    <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?w=400" 
+                         alt="Burger cheese" 
+                         class="w-full h-full object-cover">
+                </div>
+
+                <!-- Photo 4 -->
+                <div class="relative overflow-hidden rounded-2xl aspect-square hover-scale">
+                    <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=400" 
+                         alt="Pizza pepperoni" 
+                         class="w-full h-full object-cover">
+                </div>
+
+                <!-- Photo 5 -->
+                <div class="relative overflow-hidden rounded-2xl aspect-square hover-scale">
+                    <img src="https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?w=400" 
+                         alt="Burger bacon" 
+                         class="w-full h-full object-cover">
+                </div>
+
+                <!-- Photo 6 -->
+                <div class="relative overflow-hidden rounded-2xl aspect-square hover-scale">
+                    <img src="https://images.unsplash.com/photo-1571407970349-bc81e7e96d47?w=400" 
+                         alt="Frites croustillantes" 
+                         class="w-full h-full object-cover">
+                </div>
+
+                <!-- Photo 7 -->
+                <div class="relative overflow-hidden rounded-2xl aspect-square hover-scale">
+                    <img src="https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?w=400" 
+                         alt="Pizza italienne" 
+                         class="w-full h-full object-cover">
+                </div>
+
+                <!-- Photo 8 -->
+                <div class="relative overflow-hidden rounded-2xl aspect-square hover-scale">
+                    <img src="https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=400" 
+                         alt="Burger double" 
+                         class="w-full h-full object-cover">
+                </div>
+            </div>
+
+            <!-- Lien vers Facebook -->
+            <div class="text-center mt-10">
+                <a href="https://www.facebook.com/groups/252139225671325/user/61551255389139/" 
+                   target="_blank" 
+                   class="inline-flex items-center gradient-rose text-white px-8 py-3 rounded-full font-semibold hover-scale">
+                    <i class="fab fa-facebook mr-2"></i>Voir plus sur Facebook
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================
+         SECTION HORAIRES & INFOS
+         - Horaires d'ouverture
+         - Informations pratiques
+         ============================================= -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-3 gap-8 fade-in">
+                
+                <!-- Horaires - Modifier selon vos horaires réels -->
+                <div class="text-center p-8 bg-rose-pale rounded-3xl">
+                    <div class="w-16 h-16 bg-rose-fushia rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-clock text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Horaires</h3>
+                    <ul class="text-gray-600 space-y-2">
+                        <li><strong>Lundi - Vendredi</strong></li>
+                        <li>11h30 - 14h00 / 18h30 - 21h30</li>
+                        <li class="pt-2"><strong>Samedi - Dimanche</strong></li>
+                        <li>11h30 - 22h00</li>
+                    </ul>
+                </div>
+
+                <!-- Services -->
+                <div class="text-center p-8 bg-rose-pale rounded-3xl">
+                    <div class="w-16 h-16 bg-rose-fushia rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-concierge-bell text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Nos Services</h3>
+                    <ul class="text-gray-600 space-y-2">
+                        <li><i class="fas fa-check text-rose-fushia mr-2"></i>Sur place</li>
+                        <li><i class="fas fa-check text-rose-fushia mr-2"></i>À emporter</li>
+                        <li><i class="fas fa-check text-rose-fushia mr-2"></i>Food Truck</li>
+                        <li><i class="fas fa-check text-rose-fushia mr-2"></i>Service Traiteur</li>
+                    </ul>
+                </div>
+
+                <!-- Paiements -->
+                <div class="text-center p-8 bg-rose-pale rounded-3xl">
+                    <div class="w-16 h-16 bg-rose-fushia rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-credit-card text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Paiements</h3>
+                    <ul class="text-gray-600 space-y-2">
+                        <li><i class="fas fa-money-bill text-rose-fushia mr-2"></i>Espèces</li>
+                        <li><i class="fas fa-credit-card text-rose-fushia mr-2"></i>Carte Bancaire</li>
+                        <li><i class="fas fa-ticket-alt text-rose-fushia mr-2"></i>Tickets Restaurant</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================
+         SECTION CONTACT & LOCALISATION
+         - Carte Google Maps
+         - Coordonnées
+         ============================================= -->
+    <section id="contact" class="py-20 gradient-rose relative overflow-hidden">
+        <!-- Décoration fond -->
+        <div class="absolute top-0 right-0 w-96 h-96 bg-white opacity-5 rounded-full -mr-48 -mt-48"></div>
+        <div class="absolute bottom-0 left-0 w-72 h-72 bg-white opacity-5 rounded-full -ml-36 -mb-36"></div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            
+            <!-- Titre de section -->
+            <div class="text-center mb-20 fade-in">
+                <p class="section-subtitle text-white opacity-80 mb-3">Visitez notre établissement</p>
+                <h2 class="section-title text-5xl md:text-6xl text-white mb-4">
+                    Nous Trouver
+                </h2>
+                <p class="text-white text-lg opacity-90 max-w-2xl mx-auto">
+                    Découvrez notre localisation et venez nous rencontrer pour savourer nos délicieuses créations
+                </p>
+                <div class="w-24 h-1 bg-rose-bonbon mx-auto rounded-full mt-6"></div>
+            </div>
+
+            <!-- Cartes d'information - 3 colonnes -->
+            <div class="grid md:grid-cols-3 gap-6 mb-16">
+                
+                <!-- Carte Adresse -->
+                <div class="fade-in bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition transform hover:scale-105">
+                    <div class="flex items-center justify-center w-16 h-16 bg-rose-bonbon rounded-2xl mb-6 mx-auto">
+                        <i class="fas fa-map-pin text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4 text-center">Adresse</h3>
+                    <p class="text-gray-700 text-center text-sm leading-relaxed mb-6">
+                        8 Place de l'Horloge<br>
+                        30870 Clarensac<br>
+                        France
+                    </p>
+                    <a href="https://maps.google.com/?q=8+Place+de+l'Horloge+Clarensac" 
+                       target="_blank"
+                       class="block w-full text-center bg-rose-bonbon text-white px-4 py-3 rounded-lg font-semibold text-sm hover:bg-rose-fushia transition">
+                        <i class="fas fa-directions mr-2"></i>Voir sur Maps
+                    </a>
+                </div>
+
+                <!-- Carte Téléphone -->
+                <div class="fade-in bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition transform hover:scale-105">
+                    <div class="flex items-center justify-center w-16 h-16 bg-rose-bonbon rounded-2xl mb-6 mx-auto">
+                        <i class="fas fa-phone text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4 text-center">Téléphone</h3>
+                    <a href="tel:0981522946" class="text-center block text-rose-bonbon text-3xl font-bold mb-3 hover:text-rose-fushia transition">
+                        09 81 52 29 46
+                    </a>
+                    <p class="text-gray-600 text-center text-sm mb-6">Lun-Dim : 11h00 - 22h00</p>
+                    <a href="tel:0981522946" 
+                       class="block w-full text-center bg-rose-bonbon text-white px-4 py-3 rounded-lg font-semibold text-sm hover:bg-rose-fushia transition">
+                        <i class="fas fa-phone-alt mr-2"></i>Appeler maintenant
+                    </a>
+                </div>
+
+                <!-- Carte Email -->
+                <div class="fade-in bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition transform hover:scale-105">
+                    <div class="flex items-center justify-center w-16 h-16 bg-rose-bonbon rounded-2xl mb-6 mx-auto">
+                        <i class="fas fa-envelope text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4 text-center">Email</h3>
+                    <a href="mailto:chezpierrotfoodtruck@gmail.com" class="text-center block text-gray-700 text-sm mb-6 hover:text-rose-bonbon transition break-all">
+                        chezpierrotfoodtruck@gmail.com
+                    </a>
+                    <a href="mailto:chezpierrotfoodtruck@gmail.com" 
+                       class="block w-full text-center bg-rose-bonbon text-white px-4 py-3 rounded-lg font-semibold text-sm hover:bg-rose-fushia transition">
+                        <i class="fas fa-envelope-open mr-2"></i>Nous écrire
+                    </a>
+                </div>
+            </div>
+
+            <!-- Carte Google Maps et Horaires -->
+            <div class="grid md:grid-cols-2 gap-8 items-stretch">
+                
+                <!-- Carte Google Maps -->
+                <div class="fade-in rounded-3xl overflow-hidden shadow-2xl border-4 border-rose-bonbon h-96 md:h-full min-h-96">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14891.943073247882!2d55.51!3d-21.34!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2178d0f5c4c3c8e1%3A0x1234567890abcdef!2sSaint-Priest%2C%20La%20R%C3%A9union!5e0!3m2!1sfr!2sfr!4v1234567890"
+                        width="100%" 
+                        height="100%" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy">
+                    </iframe>
+                </div>
+
+                <!-- Horaires et Infos Pratiques -->
+                <div class="fade-in text-white">
+                    <div class="space-y-6">
+                        
+                        <!-- Horaires -->
+                        <div class="bg-white rounded-2xl p-8 shadow-lg">
+                            <h3 class="text-2xl font-bold mb-6 text-gray-900 flex items-center">
+                                <i class="fas fa-clock text-rose-bonbon text-2xl mr-3"></i>
+                                Nos Horaires
+                            </h3>
+                            <div class="space-y-4">
+                                <div class="flex justify-between items-center pb-4 border-b border-gray-200">
+                                    <span class="text-gray-700 font-medium">Lundi - Vendredi</span>
+                                    <span class="font-bold text-rose-bonbon">11h00 - 22h00</span>
+                                </div>
+                                <div class="flex justify-between items-center pb-4 border-b border-gray-200">
+                                    <span class="text-gray-700 font-medium">Samedi - Dimanche</span>
+                                    <span class="font-bold text-rose-bonbon">11h30 - 23h00</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-700 font-medium">Dernier Service</span>
+                                    <span class="font-bold text-rose-bonbon">30 min avant fermeture</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Services -->
+                        <div class="bg-white rounded-2xl p-8 shadow-lg">
+                            <h3 class="text-2xl font-bold mb-6 text-gray-900 flex items-center">
+                                <i class="fas fa-concierge-bell text-rose-bonbon text-2xl mr-3"></i>
+                                Nos Services
+                            </h3>
+                            <div class="space-y-3">
+                                <div class="flex items-center">
+                                    <i class="fas fa-check-circle text-rose-bonbon mr-3"></i>
+                                    <span class="text-gray-700 font-medium">Sur place</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-check-circle text-rose-bonbon mr-3"></i>
+                                    <span class="text-gray-700 font-medium">À emporter</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-check-circle text-rose-bonbon mr-3"></i>
+                                    <span class="text-gray-700 font-medium">Livraison</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-check-circle text-rose-bonbon mr-3"></i>
+                                    <span class="text-gray-700 font-medium">Traiteur & Événements</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Réseaux Sociaux -->
+                        <div class="flex items-center space-x-4">
+                            <span class="text-white font-semibold">Suivez-nous :</span>
+                            <a href="https://www.facebook.com/groups/252139225671325/user/61551255389139/" 
+                               target="_blank"
+                               class="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center hover:bg-rose-bonbon transition text-white text-lg border border-white border-opacity-20">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" 
+                               class="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center hover:bg-rose-bonbon transition text-white text-lg border border-white border-opacity-20">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================
+         FOOTER
+         - Copyright et mentions
+         ============================================= -->
+    <footer class="bg-gray-900 text-white py-10">
+        <div class="container mx-auto px-4">
+            <div class="text-center">
+                <!-- Logo -->
+                <h3 class="font-pacifico text-3xl text-rose-bonbon mb-4">
+                    Chez Pierrot
+                </h3>
+                <p class="text-gray-400 mb-4">
+                    Snacking Revisité • Pizzeria • Food Truck • Traiteur
+                </p>
+                
+                <!-- Réseaux sociaux -->
+                <div class="flex justify-center space-x-4 mb-6">
+                    <a href="https://www.facebook.com/groups/252139225671325/user/61551255389139/" 
+                       target="_blank"
+                       class="w-10 h-10 bg-rose-fushia rounded-full flex items-center justify-center hover:bg-rose-bonbon transition">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" 
+                       class="w-10 h-10 bg-rose-fushia rounded-full flex items-center justify-center hover:bg-rose-bonbon transition">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+
+                <!-- Copyright -->
+                <p class="text-gray-500 text-sm">
+                    © 2024 Chez Pierrot - Tous droits réservés
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- =============================================
+         LIGHTBOX / MODAL DE ZOOM
+         ============================================= -->
+    <div id="lightboxModal" class="lightbox">
+        <button id="lightboxClose" class="lightbox-close">
+            <i class="fas fa-times"></i>
+        </button>
+        <button id="lightboxPrev" class="lightbox-nav lightbox-prev">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <div class="lightbox-content">
+            <img id="lightboxImg" src="" alt="" class="lightbox-img">
+        </div>
+        <button id="lightboxNext" class="lightbox-nav lightbox-next">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+        <div id="lightboxCounter" class="lightbox-counter">1 / 4</div>
+    </div>
+
+    <!-- =============================================
+         JAVASCRIPT
+         - Menu mobile
+         - Scroll effects
+         - Animations
+         ============================================= -->
+    <script>
+        // ===== MENU MOBILE =====
+        const menuBtn = document.getElementById('menuBtn');
+        const closeMenu = document.getElementById('closeMenu');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+
+        // Ouvrir le menu
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+        });
+
+        // Fermer le menu
+        closeMenu.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+        });
+
+        // Fermer le menu quand on clique sur un lien
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+            });
+        });
+
+        // ===== HEADER AU SCROLL =====
+        const header = document.getElementById('header');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                header.classList.add('header-scrolled');
+            } else {
+                header.classList.remove('header-scrolled');
+            }
+        });
+
+        // ===== ANIMATION FADE-IN AU SCROLL =====
+        const fadeElements = document.querySelectorAll('.fade-in');
+
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        fadeElements.forEach(el => observer.observe(el));
+
+        // ===== SMOOTH SCROLL POUR LES ANCRES =====
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        // ===== LIGHTBOX / ZOOM SUR LES IMAGES =====
+        const lightboxModal = document.getElementById('lightboxModal');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const lightboxClose = document.getElementById('lightboxClose');
+        const lightboxPrev = document.getElementById('lightboxPrev');
+        const lightboxNext = document.getElementById('lightboxNext');
+        const lightboxCounter = document.getElementById('lightboxCounter');
+
+        const galleryImages = [
+            { src: 'images/a.jpg', alt: 'Création 1' },
+            { src: 'images/b.jpg', alt: 'Création 2' },
+            { src: 'images/c.jpg', alt: 'Création 3' },
+            { src: 'images/d.jpg', alt: 'Création 4' }
+        ];
+
+        let currentIndex = 0;
+
+        // Ouvrir le lightbox au clic sur une image
+        document.querySelectorAll('.lightbox-trigger').forEach((img) => {
+            img.addEventListener('click', () => {
+                const index = parseInt(img.dataset.index) || 0;
+                currentIndex = index;
+                showLightbox(currentIndex);
+            });
+        });
+
+        function showLightbox(index) {
+            if (index >= 0 && index < galleryImages.length) {
+                currentIndex = index;
+                lightboxImg.src = galleryImages[index].src;
+                lightboxImg.alt = galleryImages[index].alt;
+                lightboxCounter.textContent = (index + 1) + ' / ' + galleryImages.length;
+                lightboxModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeLightbox() {
+            lightboxModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Fermer au clic sur le bouton X
+        lightboxClose.addEventListener('click', closeLightbox);
+
+        // Fermer au clic sur le fond noir
+        lightboxModal.addEventListener('click', (e) => {
+            if (e.target === lightboxModal) {
+                closeLightbox();
+            }
+        });
+
+        // Navigation précédent
+        lightboxPrev.addEventListener('click', () => {
+            let prevIndex = currentIndex - 1;
+            if (prevIndex < 0) prevIndex = galleryImages.length - 1;
+            showLightbox(prevIndex);
+        });
+
+        // Navigation suivant
+        lightboxNext.addEventListener('click', () => {
+            let nextIndex = currentIndex + 1;
+            if (nextIndex >= galleryImages.length) nextIndex = 0;
+            showLightbox(nextIndex);
+        });
+
+        // Navigation au clavier
+        document.addEventListener('keydown', (e) => {
+            if (!lightboxModal.classList.contains('active')) return;
+            
+            if (e.key === 'ArrowLeft') {
+                lightboxPrev.click();
+            } else if (e.key === 'ArrowRight') {
+                lightboxNext.click();
+            } else if (e.key === 'Escape') {
+                closeLightbox();
+            }
+        });
+    </script>
+
+</body>
+</html>
