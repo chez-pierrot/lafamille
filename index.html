@@ -338,6 +338,25 @@
             }
         }
 
+        /* Animation de défilement horizontal */
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .animate-scroll {
+            animation: scroll 30s linear infinite;
+            width: fit-content;
+        }
+
+        .animate-scroll:hover {
+            animation-play-state: paused;
+        }
+
         @media (max-width: 768px) {
             .lightbox-close {
                 top: 15px;
@@ -387,6 +406,7 @@
                     <li><a href="#menu" class="hover:text-rose-fushia transition">Menu</a></li>
                     <li><a href="#galerie" class="hover:text-rose-fushia transition">Galerie</a></li>
                     <li><a href="#contact" class="hover:text-rose-fushia transition">Contact</a></li>
+                    <li><a href="#partenaires" class="hover:text-rose-fushia transition">Partenaires</a></li>
                 </ul>
 
                 <!-- Bouton Menu Mobile -->
@@ -407,9 +427,21 @@
                 <li><a href="#menu" class="block hover:text-rose-fushia transition">Menu</a></li>
                 <li><a href="#galerie" class="block hover:text-rose-fushia transition">Galerie</a></li>
                 <li><a href="#contact" class="block hover:text-rose-fushia transition">Contact</a></li>
+                <li><a href="#partenaires" class="block hover:text-rose-fushia transition">Partenaires</a></li>
             </ul>
         </div>
     </header>
+
+    <!-- Badge Clickncode en haut à droite -->
+    <a href="https://www.clickncode34.com" 
+       target="_blank" 
+       class="fixed top-20 right-6 z-40 bg-white rounded-lg shadow-2xl hover:shadow-3xl transition transform hover:scale-110 border-4 border-cyan-400 p-1"
+       title="Créé par Clickncode - Electronic Store">
+        <img src="images/clickncode-logo.png" 
+             alt="Clickncode Logo" 
+             class="w-32 h-32 object-contain"
+             onerror="this.src='https://media.licdn.com/dms/image/C4D0BAQHFvdlO2YvIFQ/company-logo_200_200/0/1669138687651/click_n_code_logo?e=2147483647&v=beta&t=dummy'">
+    </a>
 
     <!-- =============================================
          SECTION HERO / ACCUEIL
@@ -651,16 +683,16 @@
                     <!-- Burger 7 -->
                     <div class="menu-card p-6">
                         <div class="flex justify-between items-start mb-2">
-                            <h4 class="font-semibold text-gray-800">Burger XXL</h4>
+                            <h4 class="font-semibold text-gray-800">Le Maxi Bigout</h4>
                             <span class="text-rose-fushia font-bold">12,00€</span>
                         </div>
-                        <p class="text-gray-500 text-sm">Viande bouchère 150gr, poulet milanais, sauce BBQ et Bresilienne</p>
+                        <p class="text-gray-500 text-sm">Viande bouchere 150gr, Poulet milanais, cheddar, sauce BBQ et bresilienne</p>
                     </div>
 
                     <!-- Burger 8 -->
                     <div class="menu-card p-6">
                         <div class="flex justify-between items-start mb-2">
-                            <h4 class="font-semibold text-gray-800">Burger XXL</h4>
+                            <h4 class="font-semibold text-gray-800">Le Titan</h4>
                             <span class="text-rose-fushia font-bold">14,00€</span>
                         </div>
                         <p class="text-gray-500 text-sm">Viande bouchère 150gr, galette de pommes de terre, poulet milanais, double cheddar</p>
@@ -756,7 +788,7 @@
                             <span class="text-rose-fushia font-bold">8,50€</span>
                         </div>
                         <p class="text-gray-500 text-sm">Choix de viande: Tenders, Cordon Bleu, Kebab, Viande Hachée, Émincer de Poulet, Nuggets</p>
-                        <p class="text-gray-500 text-sm mt-2">Choix de sauce: Biggy, Nayo, BBQ, Brésilienne, Algérienne, Samourai, Blanche, Ketchup</p>
+                        <p class="text-gray-500 text-sm mt-2">Choix de sauce: Biggy, Mayo, BBQ, Brésilienne, Algérienne, Samourai, Blanche, Ketchup</p>
                     </div>
 
                     <!-- Tacos L -->
@@ -766,7 +798,7 @@
                             <span class="text-rose-fushia font-bold">9,50€</span>
                         </div>
                         <p class="text-gray-500 text-sm">Choix de viande: Tenders, Cordon Bleu, Kebab, Viande Hachée, Émincer de Poulet, Nuggets</p>
-                        <p class="text-gray-500 text-sm mt-2">Choix de sauce: Biggy, Nayo, BBQ, Brésilienne, Algérienne, Samourai, Blanche, Ketchup</p>
+                        <p class="text-gray-500 text-sm mt-2">Choix de sauce: Biggy, Mayo, BBQ, Brésilienne, Algérienne, Samourai, Blanche, Ketchup</p>
                     </div>
 
                     <!-- Tacos XL -->
@@ -776,7 +808,7 @@
                             <span class="text-rose-fushia font-bold">11,00€</span>
                         </div>
                         <p class="text-gray-500 text-sm">Choix de viande: Tenders, Cordon Bleu, Kebab, Viande Hachée, Émincer de Poulet, Nuggets</p>
-                        <p class="text-gray-500 text-sm mt-2">Choix de sauce: Biggy, Nayo, BBQ, Brésilienne, Algérienne, Samourai, Blanche, Ketchup</p>
+                        <p class="text-gray-500 text-sm mt-2">Choix de sauce: Biggy, Mayo, BBQ, Brésilienne, Algérienne, Samourai, Blanche, Ketchup</p>
                     </div>
 
                     <!-- Tacos Bowl -->
@@ -793,7 +825,7 @@
             <!-- ===== CATÉGORIE : LES EXCLUSIVITÉS ===== -->
             <div class="mb-16 fade-in">
                 <h3 class="text-3xl font-semibold text-center text-gray-900 mb-2">
-                    ⭐ LES EXCLUSIVITÉS ⭐
+                    ⭐ LES EXCLUSIVITÉS DU CHEF⭐
                 </h3>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                     
@@ -810,7 +842,7 @@
                     <!-- Le Coulant -->
                     <div class="menu-card p-6">
                         <div class="flex justify-between items-start mb-2">
-                            <h4 class="font-semibold text-gray-800">Le Coulant</h4>
+                            <h4 class="font-semibold text-gray-800">Burger Le Coulant</h4>
                             <span class="text-rose-fushia font-bold">12,00€</span>
                         </div>
                         <p class="text-gray-500 text-sm">Viande bouchère 150gr, galette de pomme de terre, sauce fromagère, cheddar</p>
@@ -819,7 +851,7 @@
                     <!-- Le Gastro -->
                     <div class="menu-card p-6">
                         <div class="flex justify-between items-start mb-2">
-                            <h4 class="font-semibold text-gray-800">Le Gastro</h4>
+                            <h4 class="font-semibold text-gray-800">Burger Le Gastro</h4>
                             <span class="text-rose-fushia font-bold">14,00€</span>
                         </div>
                         <p class="text-gray-500 text-sm">Pain brioché, Viande bouchère 150gr, bacon, crème déglaçée au miel et vinaigre balsamique, cheddar</p>
@@ -827,7 +859,7 @@
                 </div>
             </div>
 
-            <!-- ===== CATÉGORIE : LES GALETTES (Nouvelle) ===== -->
+            <!-- ===== CATÉGORIE : LES GALETTES  ===== -->
             <div class="mb-16 fade-in">
                 <h3 class="text-3xl font-semibold text-center text-gray-900 mb-2">
                     🥙 LES GALETTES SPÉCIALES 🥙
@@ -1067,82 +1099,415 @@
                 <div class="w-24 h-1 bg-rose-bonbon mx-auto rounded-full mt-4"></div>
             </div>
 
-            <!-- Grille de photos - Images Unsplash restaurées -->
+            <!-- Grille de photos - Images locales -->
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 fade-in">
                 
                 <!-- Photo 1 -->
                 <div class="relative overflow-hidden rounded-2xl aspect-square hover-scale">
-                    <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400" 
-                         alt="Burger gourmet" 
+                    <img src="images/1.jpg" 
+                         alt="Pizza gourmet" 
                          class="w-full h-full object-cover">
                 </div>
 
+                <!-- Photo 0 -->
+                <div class="relative overflow-hidden rounded-2xl aspect-square hover-scale">
+                    <img src="images/1.1.jpg" 
+                         alt="Boisson maison" 
+                         class="w-full h-full object-cover">
+                </div>
+
+                <!-- Photo 0 -->
+                <div class="relative overflow-hidden rounded-2xl aspect-square hover-scale">
+                    <img src="images/1.2.jpg" 
+                         alt="Boisson maison" 
+                         class="w-full h-full object-cover">
+                </div>
+
+                <!-- Photo 0 -->
+                <div class="relative overflow-hidden rounded-2xl aspect-square hover-scale">
+                    <img src="images/1.3.jpg" 
+                         alt="Boisson maison" 
+                         class="w-full h-full object-cover">
+                </div>
+
+                <!-- Photo 0 -->
+                <div class="relative overflow-hidden rounded-2xl aspect-square hover-scale">
+                    <img src="images/10.1.jpg" 
+                         alt="Boisson maison" 
+                         class="w-full h-full object-cover">
+                </div>
+
+                <!-- Photo 0 -->
+                <div class="relative overflow-hidden rounded-2xl aspect-square hover-scale">
+                    <img src="images/10.2.jpg" 
+                         alt="Boisson maison" 
+                         class="w-full h-full object-cover">
+                </div>
+
+                <!-- Photo 0 -->
+                <div class="relative overflow-hidden rounded-2xl aspect-square hover-scale">
+                    <img src="images/10.3.jpg" 
+                         alt="Boisson maison" 
+                         class="w-full h-full object-cover">
+                </div>
+
+                <!-- Photo 0 -->
+                <div class="relative overflow-hidden rounded-2xl aspect-square hover-scale">
+                    <img src="images/10.4.jpg" 
+                         alt="Boisson maison" 
+                         class="w-full h-full object-cover">
+                </div>
+
+                <!-- Photo 10.5 -->
+                <div class="relative overflow-hidden rounded-2xl aspect-square hover-scale">
+                    <img src="images/10.5.jpg" 
+                         alt="Boisson maison" 
+                         class="w-full h-full object-cover">
+                </div>
+
+                
+
                 <!-- Photo 2 -->
                 <div class="relative overflow-hidden rounded-2xl aspect-square hover-scale">
-                    <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400" 
-                         alt="Pizza artisanale" 
+                    <img src="images/2.jpg" 
+                         alt="Burger artisanal" 
                          class="w-full h-full object-cover">
                 </div>
 
                 <!-- Photo 3 -->
                 <div class="relative overflow-hidden rounded-2xl aspect-square hover-scale">
-                    <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?w=400" 
-                         alt="Burger cheese" 
+                    <img src="images/3.jpg" 
+                         alt="Kebab gourmand" 
                          class="w-full h-full object-cover">
                 </div>
 
                 <!-- Photo 4 -->
                 <div class="relative overflow-hidden rounded-2xl aspect-square hover-scale">
-                    <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=400" 
-                         alt="Pizza pepperoni" 
+                    <img src="images/4.jpg" 
+                         alt="Pizza maison" 
                          class="w-full h-full object-cover">
                 </div>
 
                 <!-- Photo 5 -->
                 <div class="relative overflow-hidden rounded-2xl aspect-square hover-scale">
-                    <img src="https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?w=400" 
-                         alt="Burger bacon" 
+                    <img src="images/5.jpg" 
+                         alt="Burger savoureux" 
                          class="w-full h-full object-cover">
                 </div>
 
                 <!-- Photo 6 -->
                 <div class="relative overflow-hidden rounded-2xl aspect-square hover-scale">
-                    <img src="https://images.unsplash.com/photo-1571407970349-bc81e7e96d47?w=400" 
-                         alt="Frites croustillantes" 
+                    <img src="images/6.jpg" 
+                         alt="Spécialité plat" 
                          class="w-full h-full object-cover">
                 </div>
 
                 <!-- Photo 7 -->
                 <div class="relative overflow-hidden rounded-2xl aspect-square hover-scale">
-                    <img src="https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?w=400" 
-                         alt="Pizza italienne" 
+                    <img src="images/7.jpg" 
+                         alt="Salade fraîche" 
                          class="w-full h-full object-cover">
                 </div>
 
-                <!-- Photo 8 -->
+                <!-- Photo 9 -->
                 <div class="relative overflow-hidden rounded-2xl aspect-square hover-scale">
-                    <img src="https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=400" 
-                         alt="Burger double" 
+                    <img src="images/9.jpg" 
+                         alt="Plat du jour" 
+                         class="w-full h-full object-cover">
+                </div>
+
+                <!-- Photo 10 -->
+                <div class="relative overflow-hidden rounded-2xl aspect-square hover-scale">
+                    <img src="images/10.jpg" 
+                         alt="Spécialité pizza" 
+                         class="w-full h-full object-cover">
+                </div>
+
+                <!-- Photo 11 -->
+                <div class="relative overflow-hidden rounded-2xl aspect-square hover-scale">
+                    <img src="images/11.jpg" 
+                         alt="Burger premium" 
+                         class="w-full h-full object-cover">
+                </div>
+
+                <!-- Photo 12 -->
+                <div class="relative overflow-hidden rounded-2xl aspect-square hover-scale">
+                    <img src="images/12.jpg" 
+                         alt="Créations maison" 
+                         class="w-full h-full object-cover">
+                </div>
+
+                <!-- Photo 13 -->
+                <div class="relative overflow-hidden rounded-2xl aspect-square hover-scale">
+                    <img src="images/a.jpg" 
+                         alt="Affachis gourmand" 
+                         class="w-full h-full object-cover">
+                </div>
+
+                <!-- Photo 14 -->
+                <div class="relative overflow-hidden rounded-2xl aspect-square hover-scale">
+                    <img src="images/b.jpg" 
+                         alt="Affachis spécial" 
+                         class="w-full h-full object-cover">
+                </div>
+
+                <!-- Photo 15 -->
+                <div class="relative overflow-hidden rounded-2xl aspect-square hover-scale">
+                    <img src="images/c.jpg" 
+                         alt="Dessert exquis" 
+                         class="w-full h-full object-cover">
+                </div>
+
+                <!-- Photo 16 -->
+                <div class="relative overflow-hidden rounded-2xl aspect-square hover-scale">
+                    <img src="images/d.jpg" 
+                         alt="Boisson maison" 
+                         class="w-full h-full object-cover">
+                </div>
+
+                <!-- Photo 17 -->
+                <div class="relative overflow-hidden rounded-2xl aspect-square hover-scale">
+                    <img src="images/15.jpg" 
+                         alt="Boisson maison" 
+                         class="w-full h-full object-cover">
+                </div>
+
+                <!-- Photo 18 -->
+                <div class="relative overflow-hidden rounded-2xl aspect-square hover-scale">
+                    <img src="images/16.jpg" 
+                         alt="Boisson maison" 
+                         class="w-full h-full object-cover">
+                </div>
+
+                <!-- Photo 19 -->
+                <div class="relative overflow-hidden rounded-2xl aspect-square hover-scale">
+                    <img src="images/17.jpg" 
+                         alt="Boisson maison" 
+                         class="w-full h-full object-cover">
+                </div>
+
+                <!-- Photo 20 -->
+                <div class="relative overflow-hidden rounded-2xl aspect-square hover-scale">
+                    <img src="images/18.jpg" 
+                         alt="Boisson maison" 
+                         class="w-full h-full object-cover">
+                </div>
+
+                <!-- Photo 21 -->
+                <div class="relative overflow-hidden rounded-2xl aspect-square hover-scale">
+                    <img src="images/19.jpg" 
+                         alt="Boisson maison" 
+                         class="w-full h-full object-cover">
+                </div>
+
+                <!-- Photo 22 -->
+                <div class="relative overflow-hidden rounded-2xl aspect-square hover-scale">
+                    <img src="images/20.jpg" 
+                         alt="Boisson maison" 
+                         class="w-full h-full object-cover">
+                </div>
+
+                <!-- Photo 23 -->
+                <div class="relative overflow-hidden rounded-2xl aspect-square hover-scale">
+                    <img src="images/21.jpg" 
+                         alt="Boisson maison" 
+                         class="w-full h-full object-cover">
+                </div>
+
+                <!-- Photo 24 -->
+                <div class="relative overflow-hidden rounded-2xl aspect-square hover-scale">
+                    <img src="images/22.jpg" 
+                         alt="Boisson maison" 
                          class="w-full h-full object-cover">
                 </div>
             </div>
 
-            <!-- Lien vers Facebook -->
-            <div class="text-center mt-10">
-                <a href="https://www.facebook.com/groups/252139225671325/user/61551255389139/" 
-                   target="_blank" 
-                   class="inline-flex items-center gradient-rose text-white px-8 py-3 rounded-full font-semibold hover-scale">
-                    <i class="fab fa-facebook mr-2"></i>Voir plus sur Facebook
-                </a>
-            </div>
+
         </div>
     </section>
 
     <!-- =============================================
-         SECTION HORAIRES & INFOS
-         - Horaires d'ouverture
-         - Informations pratiques
+         SECTION AVIS CLIENTS
+         - Témoignages de clients
+         - Animation de défilement horizontal
          ============================================= -->
+    <section class="py-20 bg-rose-pale">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="section-title text-4xl text-gray-900 mb-4">Avis Clients 4.9/5 ⭐</h2>
+                <div class="w-24 h-1 bg-rose-bonbon mx-auto rounded-full"></div>
+            </div>
+
+            <!-- Conteneur de défilement des avis -->
+            <div class="overflow-hidden">
+                <div class="flex gap-6 animate-scroll">
+
+                    <!-- Avis 1 -->
+                    <div class="flex-shrink-0 w-80 bg-white rounded-lg p-6 shadow-lg hover:shadow-xl transition border-2 border-rose-bonbon">
+                        <div class="flex items-center mb-3">
+                            <div class="text-yellow-400 flex gap-1">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="ml-3 text-gray-600 font-semibold">C. et ses amis</span>
+                        </div>
+                        <p class="text-gray-700 mb-3">Nous avons dégusté un petit croustilles et kebab avec mes chers amis. Nous nous sommes régalés, c'était une petite merveille du Sud.</p>
+                        <p class="text-gray-500 text-sm">Récemment</p>
+                    </div>
+
+                    <!-- Avis 2 -->
+                    <div class="flex-shrink-0 w-80 bg-white rounded-lg p-6 shadow-lg hover:shadow-xl transition border-2 border-rose-bonbon">
+                        <div class="flex items-center mb-3">
+                            <div class="text-yellow-400 flex gap-1">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="ml-3 text-gray-600 font-semibold">Laurent T.</span>
+                        </div>
+                        <p class="text-gray-700 mb-3">Une superbe expérience ! Malgré le rush de l'ouverture à Clarensac, l'accueil a été top — du début à la fin, tout était délicieux. Un vrai régal, on reviendra sans hésiter !</p>
+                        <p class="text-gray-500 text-sm">Récemment</p>
+                    </div>
+
+                    <!-- Avis 3 -->
+                    <div class="flex-shrink-0 w-80 bg-white rounded-lg p-6 shadow-lg hover:shadow-xl transition border-2 border-rose-bonbon">
+                        <div class="flex items-center mb-3">
+                            <div class="text-yellow-400 flex gap-1">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="ml-3 text-gray-600 font-semibold">Isabelle M.</span>
+                        </div>
+                        <p class="text-gray-700 mb-3">Accueil et personnel au top, on n'a pris pizza et vraiment incroyable bien garnie et très bonne. Un large choix (tacos, sandwich, burger, crousty pizza...). Je recommande à 100% ! 👍</p>
+                        <p class="text-gray-500 text-sm">Récemment</p>
+                    </div>
+
+                    <!-- Avis 4 -->
+                    <div class="flex-shrink-0 w-80 bg-white rounded-lg p-6 shadow-lg hover:shadow-xl transition border-2 border-rose-bonbon">
+                        <div class="flex items-center mb-3">
+                            <div class="text-yellow-400 flex gap-1">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="ml-3 text-gray-600 font-semibold">Denis K.</span>
+                        </div>
+                        <p class="text-gray-700 mb-3">Super lieu, très bon accueil, très sympa et très bonne qualité de nourriture ! À essayer je recommande ! 🌟</p>
+                        <p class="text-gray-500 text-sm">Récemment</p>
+                    </div>
+
+                    <!-- Avis 5 -->
+                    <div class="flex-shrink-0 w-80 bg-white rounded-lg p-6 shadow-lg hover:shadow-xl transition border-2 border-rose-bonbon">
+                        <div class="flex items-center mb-3">
+                            <div class="text-yellow-400 flex gap-1">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="ml-3 text-gray-600 font-semibold">Alain B.</span>
+                        </div>
+                        <p class="text-gray-700 mb-3">Superbe adresse pour ceux qui aiment la qualité à prix correct. Tout est maison, la viande sort du boucher et l'accueil est sympathique. Je le conseil franchement.</p>
+                        <p class="text-gray-500 text-sm">Récemment</p>
+                    </div>
+
+                    <!-- Avis 6 -->
+                    <div class="flex-shrink-0 w-80 bg-white rounded-lg p-6 shadow-lg hover:shadow-xl transition border-2 border-rose-bonbon">
+                        <div class="flex items-center mb-3">
+                            <div class="text-yellow-400 flex gap-1">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="ml-3 text-gray-600 font-semibold">Marine G.</span>
+                        </div>
+                        <p class="text-gray-700 mb-3">Une équipe adorable, des burgers excellents, un petit coin chouette comme on les aime. ❤️</p>
+                        <p class="text-gray-500 text-sm">Récemment</p>
+                    </div>
+
+                    <!-- Avis 7 -->
+                    <div class="flex-shrink-0 w-80 bg-white rounded-lg p-6 shadow-lg hover:shadow-xl transition border-2 border-rose-bonbon">
+                        <div class="flex items-center mb-3">
+                            <div class="text-yellow-400 flex gap-1">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="ml-3 text-gray-600 font-semibold">Gabriel R.</span>
+                        </div>
+                        <p class="text-gray-700 mb-3">Le tacos est incroyable surtout le 3 viande énorme ! 🔥</p>
+                        <p class="text-gray-500 text-sm">Récemment</p>
+                    </div>
+
+                    <!-- Avis 8 -->
+                    <div class="flex-shrink-0 w-80 bg-white rounded-lg p-6 shadow-lg hover:shadow-xl transition border-2 border-rose-bonbon">
+                        <div class="flex items-center mb-3">
+                            <div class="text-yellow-400 flex gap-1">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="ml-3 text-gray-600 font-semibold">Stéphane L.</span>
+                        </div>
+                        <p class="text-gray-700 mb-3">Excellents tacos, avec une mention spéciale pour la sauce fromagère, vraiment remarquable. Les burgers sont tout aussi délicieux, le burger chef est exceptionnel ! Nous apprécions énormément la qualité du service, des plats proposés, ainsi que l'accueil chaleureux et le professionnalisme de toute l'équipe. 😋</p>
+                        <p class="text-gray-500 text-sm">Récemment</p>
+                    </div>
+
+                    <!-- Duplication pour l'effet boucle continue -->
+                    <div class="flex-shrink-0 w-80 bg-white rounded-lg p-6 shadow-lg hover:shadow-xl transition border-2 border-rose-bonbon">
+                        <div class="flex items-center mb-3">
+                            <div class="text-yellow-400 flex gap-1">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="ml-3 text-gray-600 font-semibold">C. et ses amis</span>
+                        </div>
+                        <p class="text-gray-700 mb-3">Nous avons dégusté un petit croustilles et kebab avec mes chers amis. Nous nous sommes régalés, c'était une petite merveille du Sud.</p>
+                        <p class="text-gray-500 text-sm">Récemment</p>
+                    </div>
+
+                    <div class="flex-shrink-0 w-80 bg-white rounded-lg p-6 shadow-lg hover:shadow-xl transition border-2 border-rose-bonbon">
+                        <div class="flex items-center mb-3">
+                            <div class="text-yellow-400 flex gap-1">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="ml-3 text-gray-600 font-semibold">Laurent T.</span>
+                        </div>
+                        <p class="text-gray-700 mb-3">Une superbe expérience ! Malgré le rush de l'ouverture à Clarensac, l'accueil a été top — du début à la fin, tout était délicieux. Un vrai régal, on reviendra sans hésiter !</p>
+                        <p class="text-gray-500 text-sm">Récemment</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--   SECTION HORAIRES & INFOS
+    <!    - Horaires d'ouverture
+    <!   - Informations pratiques
+    <!    ============================================= -->
     <section class="py-20 bg-white">
         <div class="container mx-auto px-4">
             <div class="grid md:grid-cols-3 gap-8 fade-in">
@@ -1153,11 +1518,14 @@
                         <i class="fas fa-clock text-white text-2xl"></i>
                     </div>
                     <h3 class="text-xl font-semibold text-gray-800 mb-4">Horaires</h3>
-                    <ul class="text-gray-600 space-y-2">
-                        <li><strong>Lundi - Vendredi</strong></li>
-                        <li>11h30 - 14h00 / 18h30 - 21h30</li>
-                        <li class="pt-2"><strong>Samedi - Dimanche</strong></li>
-                        <li>11h30 - 22h00</li>
+                    <ul class="text-gray-600 space-y-2 text-left">
+                        <li><strong>Lundi</strong> 18h-22h</li>
+                        <li><strong>Mardi</strong> 11h-14h, 18h-22h</li>
+                        <li><strong>Mercredi</strong> 11h-14h, 18h-22h</li>
+                        <li><strong>Jeudi</strong> <span class="text-rose-fushia font-bold">FERMER</span></li>
+                        <li><strong>Vendredi</strong> 11h-14h, 18h-22h</li>
+                        <li><strong>Samedi</strong> 18h-22h</li>
+                        <li><strong>Dimanche</strong> 18h-22h</li>
                     </ul>
                 </div>
 
@@ -1245,7 +1613,7 @@
                     <a href="tel:0981522946" class="text-center block text-rose-bonbon text-3xl font-bold mb-3 hover:text-rose-fushia transition">
                         09 81 52 29 46
                     </a>
-                    <p class="text-gray-600 text-center text-sm mb-6">Lun-Dim : 11h00 - 22h00</p>
+                    <p class="text-gray-600 text-center text-sm mb-6">Commandez maintenant ! </p>
                     <a href="tel:0981522946" 
                        class="block w-full text-center bg-rose-bonbon text-white px-4 py-3 rounded-lg font-semibold text-sm hover:bg-rose-fushia transition">
                         <i class="fas fa-phone-alt mr-2"></i>Appeler maintenant
@@ -1274,7 +1642,7 @@
                 <!-- Carte Google Maps -->
                 <div class="fade-in rounded-3xl overflow-hidden shadow-2xl border-4 border-rose-bonbon h-96 md:h-full min-h-96">
                     <iframe 
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14891.943073247882!2d55.51!3d-21.34!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2178d0f5c4c3c8e1%3A0x1234567890abcdef!2sSaint-Priest%2C%20La%20R%C3%A9union!5e0!3m2!1sfr!2sfr!4v1234567890"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2863.6248856544246!2d4.2185242!3d43.8267494!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12b4277d7bc44a8d%3A0x493e45ae3651bf1c!2sChez%20Pierrot%20Clarensac%20Snack%20Pizza%20Traiteur!5e0!3m2!1sfr!2sfr!4v1677000000000"
                         width="100%" 
                         height="100%" 
                         style="border:0;" 
@@ -1295,16 +1663,32 @@
                             </h3>
                             <div class="space-y-4">
                                 <div class="flex justify-between items-center pb-4 border-b border-gray-200">
-                                    <span class="text-gray-700 font-medium">Lundi - Vendredi</span>
-                                    <span class="font-bold text-rose-bonbon">11h00 - 22h00</span>
+                                    <span class="text-gray-700 font-medium">Lundi</span>
+                                    <span class="font-bold text-rose-bonbon">18h - 22h</span>
                                 </div>
                                 <div class="flex justify-between items-center pb-4 border-b border-gray-200">
-                                    <span class="text-gray-700 font-medium">Samedi - Dimanche</span>
-                                    <span class="font-bold text-rose-bonbon">11h30 - 23h00</span>
+                                    <span class="text-gray-700 font-medium">Mardi</span>
+                                    <span class="font-bold text-rose-bonbon">11h - 14h, 18h - 22h</span>
+                                </div>
+                                <div class="flex justify-between items-center pb-4 border-b border-gray-200">
+                                    <span class="text-gray-700 font-medium">Mercredi</span>
+                                    <span class="font-bold text-rose-bonbon">11h - 14h, 18h - 22h</span>
+                                </div>
+                                <div class="flex justify-between items-center pb-4 border-b border-gray-200">
+                                    <span class="text-gray-700 font-medium">Jeudi</span>
+                                    <span class="font-bold text-rose-fushia">FERMER</span>
+                                </div>
+                                <div class="flex justify-between items-center pb-4 border-b border-gray-200">
+                                    <span class="text-gray-700 font-medium">Vendredi</span>
+                                    <span class="font-bold text-rose-bonbon">11h - 14h, 18h - 22h</span>
+                                </div>
+                                <div class="flex justify-between items-center pb-4 border-b border-gray-200">
+                                    <span class="text-gray-700 font-medium">Samedi</span>
+                                    <span class="font-bold text-rose-bonbon">18h - 22h</span>
                                 </div>
                                 <div class="flex justify-between items-center">
-                                    <span class="text-gray-700 font-medium">Dernier Service</span>
-                                    <span class="font-bold text-rose-bonbon">30 min avant fermeture</span>
+                                    <span class="text-gray-700 font-medium">Dimanche</span>
+                                    <span class="font-bold text-rose-bonbon">18h - 22h</span>
                                 </div>
                             </div>
                         </div>
@@ -1332,21 +1716,6 @@
                                     <i class="fas fa-check-circle text-rose-bonbon mr-3"></i>
                                     <span class="text-gray-700 font-medium">Traiteur & Événements</span>
                                 </div>
-                            </div>
-                        </div>
-
-                        <!-- Réseaux Sociaux -->
-                        <div class="flex items-center space-x-4">
-                            <span class="text-white font-semibold">Suivez-nous :</span>
-                            <a href="https://www.facebook.com/groups/252139225671325/user/61551255389139/" 
-                               target="_blank"
-                               class="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center hover:bg-rose-bonbon transition text-white text-lg border border-white border-opacity-20">
-                                <i class="fab fa-facebook-f"></i>
-                            </a>
-                            <a href="#" 
-                               class="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center hover:bg-rose-bonbon transition text-white text-lg border border-white border-opacity-20">
-                                <i class="fab fa-instagram"></i>
-                            </a>
                         </div>
                     </div>
                 </div>
@@ -1355,7 +1724,81 @@
     </section>
 
     <!-- =============================================
-         FOOTER
+         SECTION NOS PARTENAIRES
+         - Logos des partenaires
+         - Animation de défilement
+         ============================================= -->
+    <section id="partenaires" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="section-title text-4xl text-gray-900 mb-4">Nos Partenaires</h2>
+                <div class="w-24 h-1 bg-rose-bonbon mx-auto rounded-full"></div>
+            </div>
+
+            <!-- Conteneur de défilement -->
+            <div class="overflow-hidden">
+                <div class="flex gap-8 animate-scroll">
+                    <!-- Partenaire 1 -->
+                    <a href="https://www.clickncode34.com" 
+                       target="_blank"
+                       class="flex-shrink-0 w-48 h-32 bg-gray-100 rounded-lg flex flex-col items-center justify-center hover:shadow-xl transition transform hover:scale-105 border-2 border-gray-200">
+                        <img src="images/partner1-logo.png" alt="Clickncode" class="h-16 w-auto object-contain mb-2">
+                        <p class="text-gray-600 font-semibold text-sm">Clickncode</p>
+                    </a>
+
+                    <!-- Partenaire 2 -->
+                    <a href="https://www.mecaauto30.fr" 
+                       target="_blank"
+                       class="flex-shrink-0 w-48 h-32 bg-gray-100 rounded-lg flex flex-col items-center justify-center hover:shadow-xl transition transform hover:scale-105 border-2 border-gray-200">
+                        <img src="images/partner2-logo.png" alt="Meca Auto30" class="h-16 w-auto object-contain mb-2">
+                        <p class="text-gray-600 font-semibold text-sm">Meca Auto30</p>
+                    </a>
+
+                    <!-- Partenaire 3 -->
+                    <a href="https://boursorama-banque-la-banque-francaise.github.io/parrainage-Boursobanque/" 
+                       target="_blank"
+                       class="flex-shrink-0 w-48 h-32 bg-gray-100 rounded-lg flex flex-col items-center justify-center hover:shadow-xl transition transform hover:scale-105 border-2 border-gray-200">
+                        <img src="images/partner3-logo.png" alt="Partenaire 3" class="h-16 w-auto object-contain mb-2">
+                        <p class="text-gray-600 font-semibold text-sm">Bourso</p>
+                    </a>
+
+                    <!-- Partenaire 4 -->
+                    <a href="https://sunology.eu/discount/SUN_TENOIDUPS_550B1C" 
+                       target="_blank"
+                       class="flex-shrink-0 w-48 h-32 bg-gray-100 rounded-lg flex flex-col items-center justify-center hover:shadow-xl transition transform hover:scale-105 border-2 border-gray-200">
+                        <img src="images/partner4-logo.png" alt="Partenaire 4" class="h-16 w-auto object-contain mb-2">
+                        <p class="text-gray-600 font-semibold text-sm">Votre Partenaire Solair</p>
+                    </a>
+
+                    <!-- Partenaire 5 -->
+                    <a href="https://www.clickncode34.com/contact" 
+                       target="_blank"
+                       class="flex-shrink-0 w-48 h-32 bg-gray-100 rounded-lg flex flex-col items-center justify-center hover:shadow-xl transition transform hover:scale-105 border-2 border-gray-200">
+                        <img src="images/partner5-logo.png" alt="Partenaire 5" class="h-16 w-auto object-contain mb-2">
+                        <p class="text-gray-600 font-semibold text-sm">Afficher votre entreprise ici</p>
+                    </a>
+
+                    <!-- Duplication pour l'effet de boucle continue -->
+                    <a href="https://www.clickncode34.com" 
+                       target="_blank"
+                       class="flex-shrink-0 w-48 h-32 bg-gray-100 rounded-lg flex flex-col items-center justify-center hover:shadow-xl transition transform hover:scale-105 border-2 border-gray-200">
+                        <img src="images/partner1-logo.png" alt="Clickncode" class="h-16 w-auto object-contain mb-2">
+                        <p class="text-gray-600 font-semibold text-sm">Clickncode</p>
+                    </a>
+
+                    <a href="https://www.mecaauto30.fr" 
+                       target="_blank"
+                       class="flex-shrink-0 w-48 h-32 bg-gray-100 rounded-lg flex flex-col items-center justify-center hover:shadow-xl transition transform hover:scale-105 border-2 border-gray-200">
+                        <img src="images/partner2-logo.png" alt="Meca Auto30" class="h-16 w-auto object-contain mb-2">
+                        <p class="text-gray-600 font-semibold text-sm">Meca Auto30</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+     <!--    FOOTER
          - Copyright et mentions
          ============================================= -->
     <footer class="bg-gray-900 text-white py-10">
@@ -1376,16 +1819,18 @@
                        class="w-10 h-10 bg-rose-fushia rounded-full flex items-center justify-center hover:bg-rose-bonbon transition">
                         <i class="fab fa-facebook-f"></i>
                     </a>
-                    <a href="#" 
-                       class="w-10 h-10 bg-rose-fushia rounded-full flex items-center justify-center hover:bg-rose-bonbon transition">
-                        <i class="fab fa-instagram"></i>
-                    </a>
                 </div>
 
                 <!-- Copyright -->
                 <p class="text-gray-500 text-sm">
                     © 2024 Chez Pierrot - Tous droits réservés
                 </p>
+
+                <a href="mentions-legales.html">Mentions légales</a> |
+                <a href="politique-confidentialite.html">Politique de confidentialité</a> |
+                <a href="https://www.clickncode34.com" target="_blank" class="text-rose-bonbon hover:text-rose-fushia transition font-semibold">
+                    Créé par Clickncode
+                </a>
             </div>
         </div>
     </footer>
