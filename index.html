@@ -432,16 +432,21 @@
         </div>
     </header>
 
-    <!-- Badge Clickncode en haut à droite -->
-    <a href="https://www.clickncode34.com" 
-       target="_blank" 
-       class="fixed top-16 md:top-20 right-3 md:right-6 z-40 bg-white rounded-lg shadow-2xl hover:shadow-3xl transition transform hover:scale-110 border-4 border-cyan-400 p-1"
-       title="Créé par Clickncode - Electronic Store">
-        <img src="images/clickncode-logo.png" 
-             alt="Clickncode Logo" 
-             class="w-16 md:w-32 h-16 md:h-32 object-contain"
-             onerror="this.src='https://media.licdn.com/dms/image/C4D0BAQHFvdlO2YvIFQ/company-logo_200_200/0/1669138687651/click_n_code_logo?e=2147483647&v=beta&t=dummy'">
-    </a>
+    <!-- Badge Clickncode en haut à droite avec bouton fermeture -->
+    <div id="clickncodeContainer" class="fixed top-16 md:top-20 right-3 md:right-6 z-40">
+        <a href="https://www.clickncode34.com" 
+           target="_blank" 
+           class="block bg-white rounded-lg shadow-2xl hover:shadow-3xl transition transform hover:scale-110 border-4 border-cyan-400 p-1"
+           title="Créé par Clickncode - Electronic Store">
+            <img src="images/clickncode-logo.png" 
+                 alt="Clickncode Logo" 
+                 class="w-16 md:w-32 h-16 md:h-32 object-contain"
+                 onerror="this.src='https://media.licdn.com/dms/image/C4D0BAQHFvdlO2YvIFQ/company-logo_200_200/0/1669138687651/click_n_code_logo?e=2147483647&v=beta&t=dummy'">
+        </a>
+        <button id="closeBadge" class="absolute -top-2 -right-2 bg-red-600 hover:bg-red-800 text-white rounded-full w-8 h-8 md:w-10 md:h-10 flex items-center justify-center text-lg font-bold shadow-lg transition cursor-pointer z-50 border-2 border-white" title="Fermer">
+            ✕
+        </button>
+    </div>
 
     <!-- =============================================
          SECTION HERO / ACCUEIL
@@ -835,7 +840,7 @@
                             <h4 class="font-semibold text-gray-800">Le Tasty Crousty</h4>
                             <span class="text-rose-fushia font-bold">9,50€</span>
                         </div>
-                        <p class="text-gray-500 text-sm">Base riz, sauce fromagère, Maison, tenders, Sauce Façon Chez Pierrot, Oignons Frits</p>
+                        <p class="text-gray-500 text-sm">Base riz, sauce fromagère Maison, tenders, Sauce Façon Chez Pierrot, Oignons Frits</p>
                     </div>
 
 
@@ -1972,6 +1977,25 @@
                 closeLightbox();
             }
         });
+
+        // ===== FERMETURE DU BADGE CLICKNCODE =====
+        const closeBadgeBtn = document.getElementById('closeBadge');
+        const clickncodeContainer = document.getElementById('clickncodeContainer');
+
+        if (closeBadgeBtn && clickncodeContainer) {
+            closeBadgeBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                e.preventDefault();
+                clickncodeContainer.style.display = 'none';
+                // Garder la préférence en localStorage
+                localStorage.setItem('chezpierrot_badge_closed', 'true');
+            });
+        }
+
+        // Vérifier si le badge a déjà été fermé
+        if (clickncodeContainer && localStorage.getItem('chezpierrot_badge_closed') === 'true') {
+            clickncodeContainer.style.display = 'none';
+        }
     </script>
 
 </body>
