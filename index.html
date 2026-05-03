@@ -380,9 +380,50 @@
                 right: 10px;
             }
         }
+
+        /* =============================================
+           BOUTONS FLOTTANTS - RÉSEAUX SOCIAUX
+           ============================================= */
+        .floating-btn {
+            transition: all 0.3s ease;
+            animation: slideIn 0.5s ease forwards;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        #scrollToTop {
+            transition: opacity 0.3s ease, visibility 0.3s ease, all 0.3s ease;
+        }
+
+        #scrollToTop.show {
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
     </style>
 </head>
 <body class="bg-white">
+
+    <!-- =============================================
+         BARRE D'ANNONCE - RESTAURANT À CALVISON (CLIQUABLE)
+         ============================================= -->
+    <a id="announcementBar" href="https://chezpierrot-laguinguette.fr/" class="fixed left-0 right-0 bg-rose-bonbon text-white z-40 transition-all duration-300 cursor-pointer hover:bg-rose-fushia" style="top: 64px;">
+        <div class="flex items-center justify-center py-2">
+            <i class="fas fa-map-pin mr-2"></i>
+            <span class="font-semibold">Retrouvez nous egalement dans notre restaurant sur Calvison !</span>
+            <button id="closeAnnouncement" class="absolute right-4 text-white hover:text-rose-pale transition" onclick="event.stopPropagation(); event.preventDefault(); this.parentElement.parentElement.style.display='none';">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </a>
 
     <!-- =============================================
          HEADER / NAVIGATION
@@ -433,7 +474,7 @@
     </header>
 
     <!-- Badge Clickncode en haut à droite avec bouton fermeture -->
-    <div id="clickncodeContainer" class="fixed top-16 md:top-20 right-3 md:right-6 z-40">
+    <div id="clickncodeContainer" class="fixed top-40 md:top-44 right-3 md:right-6 z-40">
         <a href="https://www.clickncode34.com" 
            target="_blank" 
            class="block bg-white rounded-lg shadow-2xl hover:shadow-3xl transition transform hover:scale-110 border-4 border-cyan-400 p-1"
@@ -470,6 +511,9 @@
             <h1 class="hero-title font-pacifico text-5xl md:text-7xl mb-4">
                 Chez Pierrot
             </h1>
+            <h2 class="hero-title font-pacifico text-3xl md:text-5xl mb-8 text-rose-clair">
+                Clarensac
+            </h2>
             <p class="text-xl md:text-2xl mb-2 font-light">
                 Snacking Revisité • Pizzeria • Food Truck • Traiteur
             </p>
@@ -1808,6 +1852,41 @@
     </footer>
 
     <!-- =============================================
+         BOUTONS FLOTTANTS - RÉSEAUX SOCIAUX & CONTACT
+         ============================================= -->
+    <div class="fixed bottom-6 right-6 z-40 flex flex-col gap-3">
+        <!-- Facebook -->
+        <a href="https://www.facebook.com/groups/252139225671325/user/61551255389139/" 
+           target="_blank"
+           class="floating-btn bg-rose-fushia hover:bg-rose-bonbon text-white rounded-full w-14 h-14 flex items-center justify-center shadow-lg hover:shadow-xl transition transform hover:scale-110"
+           title="Nous suivre sur Facebook">
+            <i class="fab fa-facebook-f text-xl"></i>
+        </a>
+        
+        <!-- Instagram -->
+        <a href="https://www.instagram.com/chezpierrot.clarensac/" 
+           target="_blank"
+           class="floating-btn bg-rose-fushia hover:bg-rose-bonbon text-white rounded-full w-14 h-14 flex items-center justify-center shadow-lg hover:shadow-xl transition transform hover:scale-110"
+           title="Nous suivre sur Instagram">
+            <i class="fab fa-instagram text-xl"></i>
+        </a>
+        
+        <!-- Téléphone -->
+        <a href="tel:0981522946"
+           class="floating-btn bg-rose-fushia hover:bg-rose-bonbon text-white rounded-full w-14 h-14 flex items-center justify-center shadow-lg hover:shadow-xl transition transform hover:scale-110"
+           title="Appeler Chez Pierrot">
+            <i class="fas fa-phone text-xl"></i>
+        </a>
+        
+        <!-- Retour en haut -->
+        <button id="scrollToTop"
+                class="floating-btn bg-rose-fushia hover:bg-rose-bonbon text-white rounded-full w-14 h-14 flex items-center justify-center shadow-lg hover:shadow-xl transition transform hover:scale-110 opacity-0 invisible"
+                title="Retour en haut">
+            <i class="fas fa-chevron-up text-xl"></i>
+        </button>
+    </div>
+
+    <!-- =============================================
          LIGHTBOX / MODAL DE ZOOM
          ============================================= -->
     <div id="lightboxModal" class="lightbox">
@@ -1987,6 +2066,41 @@
                 e.stopPropagation();
                 e.preventDefault();
                 clickncodeContainer.style.display = 'none';
+            });
+        }
+
+        // ===== BOUTON RETOUR EN HAUT =====
+        const scrollToTopBtn = document.getElementById('scrollToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollToTopBtn.classList.add('show');
+            } else {
+                scrollToTopBtn.classList.remove('show');
+            }
+        });
+
+        scrollToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // ===== FERMETURE DE LA BARRE D'ANNONCE =====
+        const announcementBar = document.getElementById('announcementBar');
+
+        if (announcementBar) {
+            announcementBar.addEventListener('click', function(e) {
+                // Si on clique sur le bouton fermeture, ne pas suivre le lien
+                if (e.target.closest('#closeAnnouncement')) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    announcementBar.style.display = 'none';
+                    return;
+                }
+                // Sinon, suivre le lien
+                window.location.href = this.href;
             });
         }
     </script>
