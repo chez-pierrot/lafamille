@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chez Pierrot - Choisissez votre restaurant</title>
+    
+    <!-- Tailwind CSS pour le style -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    
+    <!-- Google Fonts - Police élégante -->
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome pour les icônes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* =============================================
+           VARIABLES DE COULEURS
+           ============================================= */
+        :root {
+            --rose-bonbon: #FF69B4;
+            --rose-fushia: #FF1493;
+            --rose-clair: #FFB6C1;
+            --rose-pale: #FFF0F5;
+            --blanc: #FFFFFF;
+            --noir: #333333;
+        }
+
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .font-pacifico {
+            font-family: 'Pacifico', cursive;
+        }
+
+        .bg-rose-bonbon { background-color: var(--rose-bonbon); }
+        .bg-rose-fushia { background-color: var(--rose-fushia); }
+        .bg-rose-clair { background-color: var(--rose-clair); }
+        .bg-rose-pale { background-color: var(--rose-pale); }
+        
+        .text-rose-bonbon { color: var(--rose-bonbon); }
+        .text-rose-fushia { color: var(--rose-fushia); }
+
+        /* Animation fade-in */
+        .fade-in {
+            animation: fadeIn 0.8s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Styles des boutons */
+        .restaurant-card {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .restaurant-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(255, 20, 147, 0.4) !important;
+        }
+
+        .restaurant-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .restaurant-card:hover::before {
+            left: 100%;
+        }
+
+        /* Gradient pour les cartes */
+        .gradient-rose {
+            background: linear-gradient(135deg, var(--rose-bonbon), var(--rose-fushia));
+        }
+
+        /* Logo animé */
+        .logo-bounce {
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        /* Style du header */
+        .header-main {
+            background: linear-gradient(135deg, var(--rose-bonbon), var(--rose-fushia));
+            color: white;
+        }
+
+        .title-shadow {
+            text-shadow: 
+                -3px -3px 0 #000,
+                3px -3px 0 #000,
+                -3px 3px 0 #000,
+                3px 3px 0 #000,
+                -1px -1px 0 #000,
+                1px -1px 0 #000,
+                -1px 1px 0 #000,
+                1px 1px 0 #000;
+        }
+    </style>
+</head>
+<body class="bg-white">
+
+    <!-- =============================================
+         HEADER PRINCIPAL
+         ============================================= -->
+    <header class="header-main py-8 shadow-lg">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="font-pacifico text-5xl md:text-6xl mb-2 title-shadow">
+                Chez Pierrot
+            </h1>
+            <p class="text-xl md:text-2xl opacity-90">
+                Snacking Revisité • Pizzeria • Traiteur
+            </p>
+        </div>
+    </header>
+
+    <!-- =============================================
+         SECTION PRINCIPALE - SÉLECTION DES RESTAURANTS
+         ============================================= -->
+    <main class="min-h-screen flex items-center justify-center bg-gradient-to-b from-white to-rose-pale py-12">
+        <div class="container mx-auto px-4">
+            
+            <!-- Titre descriptif -->
+            <div class="text-center mb-12 fade-in">
+                <h2 class="section-title text-4xl md:text-5xl mb-4 text-gray-800">
+                    <i class="fas fa-map-marker-alt text-rose-fushia mr-3"></i>
+                    Découvrez nos restaurants
+                </h2>
+                <p class="text-xl text-gray-600">
+                    Sélectionnez votre localité et explorez notre menu et nos services
+                </p>
+            </div>
+
+            <!-- Grille des deux restaurants -->
+            <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto fade-in">
+
+                <!-- BOUTON 1: CLARENSAC -->
+                <a href="clarensac/site/index.html" class="restaurant-card bg-white rounded-3xl shadow-2xl p-8 md:p-10 text-center hover:shadow-3xl transform transition duration-300">
+                    <!-- Icône -->
+                    <div class="mb-6">
+                        <div class="inline-block p-4 bg-rose-pale rounded-full mb-4">
+                            <i class="fas fa-utensils text-rose-fushia text-4xl"></i>
+                        </div>
+                    </div>
+
+                    <!-- Titre -->
+                    <h3 class="text-3xl md:text-4xl font-bold text-gray-800 mb-2">
+                        Clarensac
+                    </h3>
+
+                    <!-- Localisation -->
+                    <div class="flex items-center justify-center text-rose-fushia mb-4">
+                        <i class="fas fa-map-pin mr-2"></i>
+                        <span class="text-lg">Clarensac, 30210</span>
+                    </div>
+
+                    <!-- Description -->
+                    <p class="text-gray-600 mb-6 text-lg">
+                        Découvrez notre restaurant principal avec nos meilleures spécialités, 
+                        un cadre accueillant et une cuisine savoureu
+se.
+                    </p>
+
+                    <!-- Bouton -->
+                    <div class="inline-block gradient-rose text-white px-8 py-3 rounded-full font-semibold hover:scale-110 transition transform">
+                        Visiter le restaurant
+                        <i class="fas fa-arrow-right ml-2"></i>
+                    </div>
+                </a>
+
+                <!-- BOUTON 2: CALVISSON -->
+                <a href="calvisson/site/index.html" class="restaurant-card bg-white rounded-3xl shadow-2xl p-8 md:p-10 text-center hover:shadow-3xl transform transition duration-300">
+                    <!-- Icône -->
+                    <div class="mb-6">
+                        <div class="inline-block p-4 bg-rose-pale rounded-full mb-4">
+                            <i class="fas fa-pizza-slice text-rose-fushia text-4xl"></i>
+                        </div>
+                    </div>
+
+                    <!-- Titre -->
+                    <h3 class="text-3xl md:text-4xl font-bold text-gray-800 mb-2">
+                        Calvisson
+                    </h3>
+
+                    <!-- Localisation -->
+                    <div class="flex items-center justify-center text-rose-fushia mb-4">
+                        <i class="fas fa-map-pin mr-2"></i>
+                        <span class="text-lg">Calvisson, 30420</span>
+                    </div>
+
+                    <!-- Description -->
+                    <p class="text-gray-600 mb-6 text-lg">
+                        Visitez notre ginguette à Calvisson avec une ambiance festive, 
+                        un food truck et une cuisine de qualité.
+                    </p>
+
+                    <!-- Bouton -->
+                    <div class="inline-block gradient-rose text-white px-8 py-3 rounded-full font-semibold hover:scale-110 transition transform">
+                        Visiter le restaurant
+                        <i class="fas fa-arrow-right ml-2"></i>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- =============================================
+         FOOTER
+         ============================================= -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4 text-center">
+            <p class="mb-2">
+                <strong>Chez Pierrot</strong> - Snacking Revisité | Pizzeria | Traiteur
+            </p>
+            <p class="text-gray-400 mb-4">
+                Retrouvez-nous dans nos deux restaurants à Clarensac et Calvisson
+            </p>
+            
+            <!-- Liens légaux -->
+            <div class="flex flex-col md:flex-row justify-center gap-4 text-sm">
+                <a href="mentions-legales.html" class="hover:text-rose-bonbon transition">Mentions légales</a>
+                <span class="text-gray-600">|</span>
+                <a href="politique-confidentialite.html" class="hover:text-rose-bonbon transition">Politique de confidentialité</a>
+            </div>
+
+            <hr class="my-4 border-gray-700">
+            <p class="text-gray-500 text-sm">
+                © 2024 Chez Pierrot. Tous droits réservés. | Créé avec passion pour nos clients
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>
